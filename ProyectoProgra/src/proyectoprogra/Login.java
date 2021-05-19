@@ -38,42 +38,34 @@ public class Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hotel Las Doce Lunas");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(770, 410));
         setMinimumSize(new java.awt.Dimension(770, 410));
         setResizable(false);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 3, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Hotel Las Doce Lunas");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(130, 30, 480, 80);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 480, 80));
 
         jLabelLogin.setFont(new java.awt.Font("Trebuchet MS", 3, 20)); // NOI18N
         jLabelLogin.setForeground(new java.awt.Color(255, 255, 255));
         jLabelLogin.setText("Usuario:");
-        getContentPane().add(jLabelLogin);
-        jLabelLogin.setBounds(160, 150, 79, 24);
+        getContentPane().add(jLabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, -1, -1));
 
         jLabelPassword.setFont(new java.awt.Font("Trebuchet MS", 3, 20)); // NOI18N
         jLabelPassword.setForeground(new java.awt.Color(255, 255, 255));
         jLabelPassword.setText("Contraseña:");
-        getContentPane().add(jLabelPassword);
-        jLabelPassword.setBounds(160, 190, 114, 24);
-        getContentPane().add(jTextFieldUser);
-        jTextFieldUser.setBounds(290, 150, 230, 30);
+        getContentPane().add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
+        getContentPane().add(jTextFieldUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 230, 30));
 
         jButtonLogin.setBackground(new java.awt.Color(29, 23, 220));
         jButtonLogin.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLogin.setText("Login");
-        getContentPane().add(jButtonLogin);
-        jButtonLogin.setBounds(307, 290, 90, 30);
-        getContentPane().add(jPassword);
-        jPassword.setBounds(290, 190, 230, 30);
+        getContentPane().add(jButtonLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 290, 90, 30));
+        getContentPane().add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 230, 30));
 
         BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/paisaje-con-luna.jpg"))); // NOI18N
-        getContentPane().add(BackGround);
-        BackGround.setBounds(0, 0, 770, 410);
+        getContentPane().add(BackGround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
