@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectoprogra;
 
-/**
- *
- * @author Julio
- */
+
 public class ProyectoProgra {
 
     /**
@@ -19,6 +11,8 @@ public class ProyectoProgra {
         System.out.println("Hola que tal compañeros");
         System.out.println("Cambio de rama y de dama xd");
         
+        PruebaInterfazGrafica P = new PruebaInterfazGrafica();
+        P.setVisible(true);
     }
     
 }
