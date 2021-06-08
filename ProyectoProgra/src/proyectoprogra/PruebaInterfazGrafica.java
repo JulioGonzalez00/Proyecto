@@ -35,44 +35,46 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         jButtonLOGIN = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelBienvenido = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelLogo = new javax.swing.JLabel();
+        jLabelLema = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelPassword.setFont(new java.awt.Font("TYPOGRAPH PRO", 1, 24)); // NOI18N
+        jLabelPassword.setFont(new java.awt.Font("Trajan Pro", 1, 36)); // NOI18N
         jLabelPassword.setText("Password:");
-        jPanelPizarron.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 160, 40));
-        jPanelPizarron.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 140, 40));
+        jPanelPizarron.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 230, 40));
+        jPanelPizarron.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 190, 30));
 
-        jLabelLogin.setFont(new java.awt.Font("TYPOGRAPH PRO", 1, 24)); // NOI18N
+        jLabelLogin.setFont(new java.awt.Font("Trajan Pro", 1, 36)); // NOI18N
         jLabelLogin.setText("Login:");
-        jPanelPizarron.add(jLabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 90, 30));
-        jPanelPizarron.add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, 140, 20));
+        jPanelPizarron.add(jLabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 160, 40));
+        jPanelPizarron.add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 190, 30));
 
         jButtonLOGIN.setText("LOGIN");
-        jPanelPizarron.add(jButtonLOGIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 110, 50));
+        jButtonLOGIN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelPizarron.add(jButtonLOGIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 110, 50));
 
         jLabelTitulo.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelTitulo.setFont(new java.awt.Font("TYPOGRAPH PRO", 1, 36)); // NOI18N
-        jLabelTitulo.setText("      Hotel \nLas Doce Lunas");
-        jPanelPizarron.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 80, 560, 60));
+        jLabelTitulo.setFont(new java.awt.Font("Sitka Small", 1, 36)); // NOI18N
+        jLabelTitulo.setText("     Hotel  Las Doce Rosas");
+        jPanelPizarron.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 490, 60));
 
         jLabelBienvenido.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabelBienvenido.setText("¡Bienvenido!");
-        jPanelPizarron.add(jLabelBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 170, 60));
+        jPanelPizarron.add(jLabelBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 170, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rosasfondo.jpg"))); // NOI18N
-        jPanelPizarron.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 560, 580));
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/12RosasPequeño.jpg"))); // NOI18N
+        jPanelPizarron.add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 300, 130));
 
-        jLabel2.setText("jLabel2");
-        jPanelPizarron.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
+        jLabelLema.setFont(new java.awt.Font("Thames", 1, 18)); // NOI18N
+        jLabelLema.setText("DOCE RAZONES PARA SER FELIZ");
+        jPanelPizarron.add(jLabelLema, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 320, 40));
 
-        jLabel3.setText("jLabel3");
-        jPanelPizarron.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/46958002_539474346553079_371541282721366016_n.jpg"))); // NOI18N
+        jPanelPizarron.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,11 +127,11 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLOGIN;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBienvenido;
+    private javax.swing.JLabel jLabelLema;
     private javax.swing.JLabel jLabelLogin;
+    private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelPizarron;
