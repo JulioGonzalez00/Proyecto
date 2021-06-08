@@ -6,11 +6,15 @@ public class ProyectoProgra {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
-        
-        PruebaInterfazGrafica P = new PruebaInterfazGrafica();
-        P.setVisible(true);
+        PortadaHotel port = new PortadaHotel();
+        PruebaInterfazGrafica login = new PruebaInterfazGrafica();
+        port.setVisible(true);
+        port.setLocationRelativeTo(null);
+        Thread.sleep(1000);
+        port.cerrar();
+        //login.setVisible(true);
     }
     
 }
