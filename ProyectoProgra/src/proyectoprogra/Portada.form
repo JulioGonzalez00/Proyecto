@@ -32,8 +32,8 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-            <EtchetBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
           </Border>
         </Property>
       </Properties>
@@ -62,7 +62,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -85,7 +85,7 @@
                   <Component id="jLabelProgramador2" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabelProgramador3" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace pref="74" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,7 +101,7 @@
         <Component class="javax.swing.JLabel" name="jLabelMaestra">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="18" style="1"/>
+              <Font name="Perpetua Titling MT" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Maestra: Georgina Salazar Partida"/>
           </Properties>
@@ -109,7 +109,7 @@
         <Component class="javax.swing.JLabel" name="jLabelMateria">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="18" style="1"/>
+              <Font name="Perpetua Titling MT" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Materia: Programacion ii"/>
           </Properties>
@@ -117,7 +117,7 @@
         <Component class="javax.swing.JLabel" name="jLabelFecha">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="18" style="1"/>
+              <Font name="Perpetua Titling MT" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha:"/>
           </Properties>
@@ -133,7 +133,7 @@
         <Component class="javax.swing.JLabel" name="jLabelProgramadores">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Perpetua Titling MT" size="18" style="1"/>
+              <Font name="Perpetua Titling MT" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Programadores:"/>
           </Properties>

@@ -38,23 +38,23 @@ public class Portada extends javax.swing.JPanel {
         jLabelProgramador3 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabelUAA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/UAA.png"))); // NOI18N
 
-        jLabelMaestra.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabelMaestra.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jLabelMaestra.setText("Maestra: Georgina Salazar Partida");
 
-        jLabelMateria.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabelMateria.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jLabelMateria.setText("Materia: Programacion ii");
 
-        jLabelFecha.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabelFecha.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jLabelFecha.setText("Fecha:");
 
         jLabelProgramador1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jLabelProgramador1.setText("Julio de Jesus Gonzalez Rangel");
 
-        jLabelProgramadores.setFont(new java.awt.Font("Perpetua Titling MT", 1, 18)); // NOI18N
+        jLabelProgramadores.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
         jLabelProgramadores.setText("Programadores:");
 
         jLabelProgramador2.setFont(new java.awt.Font("Perpetua Titling MT", 1, 14)); // NOI18N
@@ -83,7 +83,7 @@ public class Portada extends javax.swing.JPanel {
                                 .addComponent(jLabelProgramador1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabelProgramador2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabelProgramador3, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,7 +104,7 @@ public class Portada extends javax.swing.JPanel {
                 .addComponent(jLabelProgramador2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelProgramador3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

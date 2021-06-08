@@ -36,6 +36,8 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         jLabelTitulo = new javax.swing.JLabel();
         jLabelBienvenido = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,8 +65,14 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         jLabelBienvenido.setText("¡Bienvenido!");
         jPanelPizarron.add(jLabelBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 170, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/46958002_539474346553079_371541282721366016_n.jpg"))); // NOI18N
-        jPanelPizarron.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 500));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rosasfondo.jpg"))); // NOI18N
+        jPanelPizarron.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 560, 580));
+
+        jLabel2.setText("jLabel2");
+        jPanelPizarron.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
+
+        jLabel3.setText("jLabel3");
+        jPanelPizarron.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,6 +126,8 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLOGIN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBienvenido;
     private javax.swing.JLabel jLabelLogin;
     private javax.swing.JLabel jLabelPassword;
