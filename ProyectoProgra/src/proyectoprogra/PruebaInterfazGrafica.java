@@ -126,17 +126,18 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         nom = this.jTextFieldLogin.getText().trim();
         pass = this.jPassword.getPassword();
         query = "select * from usuarios where nom = " + "'" + nom + "'";
-        //this.conn.Consult(query);
-        this.setVisible(false);
+        this.conn.Consult(query);
         try {
             String password2 = this.conn.rs.getString(2);
             password = new String(pass);
             String contraseña = DigestUtils.md5Hex(password);
             if (password2.equals(contraseña)) {
+                this.setVisible(false);
                 JOptionPane.showMessageDialog(this, "Bienvenido " + this.conn.rs.getString(1) + ".");
-                Prueba prueba = new Prueba();
-                prueba.setVisible(true);
-                prueba.addWindowListener(new WindowListener() {
+                Menu menu = new Menu(this.conn);
+                menu.setVisible(true);
+                menu.setLocationRelativeTo(null);
+                menu.addWindowListener(new WindowListener() {
                     @Override
                     public void windowClosed(WindowEvent we) {
                         aux.setVisible(true);
