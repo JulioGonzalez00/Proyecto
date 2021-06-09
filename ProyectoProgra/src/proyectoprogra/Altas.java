@@ -28,7 +28,7 @@ public class Altas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelPizarron = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
         jLabelCliente = new javax.swing.JLabel();
         jLabelTipoHab = new javax.swing.JLabel();
         jLabelCuidadOr = new javax.swing.JLabel();
@@ -37,11 +37,11 @@ public class Altas extends javax.swing.JFrame {
         jTextFieldCliente = new javax.swing.JTextField();
         jTextFieldTipo = new javax.swing.JTextField();
         jSpinnerDias = new javax.swing.JSpinner();
-        jSpinner1 = new javax.swing.JSpinner();
+        jSpinnerHuespedes = new javax.swing.JSpinner();
         jTextFieldCiudad = new javax.swing.JTextField();
         jLabelLema = new javax.swing.JLabel();
         jLabelIngreso = new javax.swing.JLabel();
-        jTextFieldRegistro = new javax.swing.JTextField();
+        jDayChooserCalendario = new com.toedter.calendar.JDayChooser();
         jLabelHuespedes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,9 +49,9 @@ public class Altas extends javax.swing.JFrame {
         jPanelPizarron.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Sitka Small", 0, 60)); // NOI18N
-        jLabel2.setText("Registro");
-        jPanelPizarron.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 260, 60));
+        jLabelTitulo.setFont(new java.awt.Font("Sitka Small", 0, 60)); // NOI18N
+        jLabelTitulo.setText("Registro");
+        jPanelPizarron.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 260, 60));
 
         jLabelCliente.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
         jLabelCliente.setText("Cliente:");
@@ -75,7 +75,7 @@ public class Altas extends javax.swing.JFrame {
         jPanelPizarron.add(jTextFieldCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 30));
         jPanelPizarron.add(jTextFieldTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 130, 30));
         jPanelPizarron.add(jSpinnerDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 100, 30));
-        jPanelPizarron.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 100, 30));
+        jPanelPizarron.add(jSpinnerHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 100, 30));
         jPanelPizarron.add(jTextFieldCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 130, 30));
 
         jLabelLema.setFont(new java.awt.Font("Trajan Pro", 1, 24)); // NOI18N
@@ -85,7 +85,7 @@ public class Altas extends javax.swing.JFrame {
         jLabelIngreso.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
         jLabelIngreso.setText("Ingreso:");
         jPanelPizarron.add(jLabelIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 110, 30));
-        jPanelPizarron.add(jTextFieldRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 30));
+        jPanelPizarron.add(jDayChooserCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 100));
 
         jLabelHuespedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47093733_539474476553066_5090645292215173120_n.jpg"))); // NOI18N
         jPanelPizarron.add(jLabelHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 489, 526));
@@ -140,7 +140,7 @@ public class Altas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private com.toedter.calendar.JDayChooser jDayChooserCalendario;
     private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelCuidadOr;
     private javax.swing.JLabel jLabelDias;
@@ -148,13 +148,13 @@ public class Altas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelIngreso;
     private javax.swing.JLabel jLabelLema;
     private javax.swing.JLabel jLabelTipoHab;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTotHuespedes;
     private javax.swing.JPanel jPanelPizarron;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinnerDias;
+    private javax.swing.JSpinner jSpinnerHuespedes;
     private javax.swing.JTextField jTextFieldCiudad;
     private javax.swing.JTextField jTextFieldCliente;
-    private javax.swing.JTextField jTextFieldRegistro;
     private javax.swing.JTextField jTextFieldTipo;
     // End of variables declaration//GEN-END:variables
 }
