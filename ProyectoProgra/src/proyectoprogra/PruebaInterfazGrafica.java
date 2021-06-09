@@ -7,7 +7,11 @@ package proyectoprogra;
 
 import controlMySql.MySqlConn;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -30,6 +34,7 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
     }
 
     static MySqlConn conn;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,33 +120,67 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
 
     private void jButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLOGINActionPerformed
         // TODO add your handling code here:
-        String nom,nom2,query,password;
+        String nom, nom2, query, password;
         char[] pass;
+        final JFrame aux = this;
         nom = this.jTextFieldLogin.getText().trim();
         pass = this.jPassword.getPassword();
         query = "select * from usuarios where nom = " + "'" + nom + "'";
-        this.conn.Consult(query);
-        try{
+        //this.conn.Consult(query);
+        this.setVisible(false);
+        try {
             String password2 = this.conn.rs.getString(2);
             password = new String(pass);
             String contraseña = DigestUtils.md5Hex(password);
-            if(password2.equals(contraseña)){
-                JOptionPane.showMessageDialog(this,"Bienvenido " + this.conn.rs.getString(1) + ".");
-            }else{
-                JOptionPane.showMessageDialog(this,"Error en la contraseña");
+            if (password2.equals(contraseña)) {
+                JOptionPane.showMessageDialog(this, "Bienvenido " + this.conn.rs.getString(1) + ".");
+                Prueba prueba = new Prueba();
+                prueba.setVisible(true);
+                prueba.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+            } else {
+                JOptionPane.showMessageDialog(this, "Error en la contraseña");
             }
-        }catch(SQLException ex){
-            JOptionPane.showMessageDialog(this,"No existe la cuenta");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "No existe la cuenta");
         }
         this.jTextFieldLogin.setText("");
         this.jPassword.setText("");
-        
+
     }//GEN-LAST:event_jButtonLOGINActionPerformed
 
     private void jTextFieldLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLoginKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
         }
     }//GEN-LAST:event_jTextFieldLoginKeyPressed
 
