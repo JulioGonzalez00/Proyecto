@@ -36,6 +36,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelPizarron = new javax.swing.JPanel();
         jButtonCerrarSesion = new javax.swing.JButton();
         jLabelLogo = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
@@ -43,11 +44,16 @@ public class Menu extends javax.swing.JFrame {
         jMenuClientes = new javax.swing.JMenu();
         jMenuItemAltas = new javax.swing.JMenuItem();
         jMenuItemBajas = new javax.swing.JMenuItem();
+        jMenuItemConsultas = new javax.swing.JMenuItem();
         jMenuAdmin = new javax.swing.JMenu();
+        jMenuItemAltas2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelPizarron.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonCerrarSesion.setBackground(new java.awt.Color(0, 0, 0));
         jButtonCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
@@ -57,14 +63,16 @@ public class Menu extends javax.swing.JFrame {
                 jButtonCerrarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 110, 39));
+        jPanelPizarron.add(jButtonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 110, 39));
 
         jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/12RosasPequeño.png"))); // NOI18N
-        jLabelLogo.setText("jLabel1");
-        getContentPane().add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 300, -1));
+        jPanelPizarron.add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/12RosasMenu.jpg"))); // NOI18N
-        getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 480));
+        jLabelFondo.setText("jLabel1");
+        jPanelPizarron.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 730, 470));
+
+        getContentPane().add(jPanelPizarron, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 730, 490));
 
         jMenuClientes.setText("Clientes");
 
@@ -74,9 +82,16 @@ public class Menu extends javax.swing.JFrame {
         jMenuItemBajas.setText("Salida");
         jMenuClientes.add(jMenuItemBajas);
 
+        jMenuItemConsultas.setText("Consultas");
+        jMenuClientes.add(jMenuItemConsultas);
+
         jMenuBar1.add(jMenuClientes);
 
         jMenuAdmin.setText("Administracion");
+
+        jMenuItemAltas2.setText("Registrar Usuario");
+        jMenuAdmin.add(jMenuItemAltas2);
+
         jMenuBar1.add(jMenuAdmin);
 
         setJMenuBar(jMenuBar1);
@@ -132,6 +147,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuClientes;
     private javax.swing.JMenuItem jMenuItemAltas;
+    private javax.swing.JMenuItem jMenuItemAltas2;
     private javax.swing.JMenuItem jMenuItemBajas;
+    private javax.swing.JMenuItem jMenuItemConsultas;
+    private javax.swing.JPanel jPanelPizarron;
     // End of variables declaration//GEN-END:variables
 }

@@ -76,6 +76,9 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jPassword">
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPasswordKeyPressed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="330" y="360" width="190" height="30"/>
@@ -132,7 +135,7 @@
         <Component class="javax.swing.JLabel" name="jLabelLogo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/12RosasPeque&#xf1;o.jpg"/>
+              <Image iconType="3" name="/Imagenes/12RosasPeque&#xf1;o.png"/>
             </Property>
           </Properties>
           <Constraints>

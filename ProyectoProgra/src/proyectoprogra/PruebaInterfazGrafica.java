@@ -74,6 +74,12 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         jLabelLogin.setFont(new java.awt.Font("Trajan Pro", 1, 36)); // NOI18N
         jLabelLogin.setText("Login:");
         jPanelPizarron.add(jLabelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 160, 40));
+
+        jPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordKeyPressed(evt);
+            }
+        });
         jPanelPizarron.add(jPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 190, 30));
 
         jButtonLOGIN.setText("LOGIN");
@@ -94,7 +100,7 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         jLabelBienvenido.setText("¡Bienvenido!");
         jPanelPizarron.add(jLabelBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 170, 60));
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/12RosasPequeño.jpg"))); // NOI18N
+        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/12RosasPequeño.png"))); // NOI18N
         jPanelPizarron.add(jLabelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 300, 130));
 
         jLabelLema.setFont(new java.awt.Font("Thames", 1, 18)); // NOI18N
@@ -175,15 +181,22 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         }
         this.jTextFieldLogin.setText("");
         this.jPassword.setText("");
-
+        this.jTextFieldLogin.grabFocus();
     }//GEN-LAST:event_jButtonLOGINActionPerformed
 
     private void jTextFieldLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLoginKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
+            this.jPassword.grabFocus();
         }
     }//GEN-LAST:event_jTextFieldLoginKeyPressed
+
+    private void jPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.jButtonLOGINActionPerformed(null);
+        }
+    }//GEN-LAST:event_jPasswordKeyPressed
 
     /**
      * @param args the command line arguments
