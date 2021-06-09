@@ -1,5 +1,7 @@
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+
 
 public class ProyectoProgra {
 
@@ -8,8 +10,9 @@ public class ProyectoProgra {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        MySqlConn conn = new MySqlConn();
         PortadaHotel port = new PortadaHotel();
-        PruebaInterfazGrafica login = new PruebaInterfazGrafica();
+        PruebaInterfazGrafica login = new PruebaInterfazGrafica(conn);
         port.setVisible(true);
         port.setLocationRelativeTo(null);
         try{

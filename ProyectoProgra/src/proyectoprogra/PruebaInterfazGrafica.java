@@ -20,11 +20,16 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
     /**
      * Creates new form PruebaInterfazGrafica
      */
+    public PruebaInterfazGrafica(MySqlConn conn) {
+        this.conn = conn;
+        initComponents();
+    }
+
     public PruebaInterfazGrafica() {
         initComponents();
     }
 
-    MySqlConn conn;
+    static MySqlConn conn;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,7 +119,7 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         char[] pass;
         nom = this.jTextFieldLogin.getText().trim();
         pass = this.jPassword.getPassword();
-        query = "select * from usuario where nom = " + "'" + nom + "'";
+        query = "select * from usuarios where nom = " + "'" + nom + "'";
         this.conn.Consult(query);
         try{
             String password2 = this.conn.rs.getString(2);
@@ -130,8 +135,6 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         }
         this.jTextFieldLogin.setText("");
         this.jPassword.setText("");
-        PruebaInterfazGrafica port = new PruebaInterfazGrafica();
-        //this.setVisible(false);
         
     }//GEN-LAST:event_jButtonLOGINActionPerformed
 
