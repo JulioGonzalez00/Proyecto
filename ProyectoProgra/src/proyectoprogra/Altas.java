@@ -41,7 +41,7 @@ public class Altas extends javax.swing.JFrame {
         jTextFieldCiudad = new javax.swing.JTextField();
         jLabelLema = new javax.swing.JLabel();
         jLabelIngreso = new javax.swing.JLabel();
-        jDayChooserCalendario = new com.toedter.calendar.JDayChooser();
+        jDateChooserIngreso = new com.toedter.calendar.JDateChooser();
         jLabelHuespedes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,22 +83,24 @@ public class Altas extends javax.swing.JFrame {
         jPanelPizarron.add(jLabelLema, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 340, 40));
 
         jLabelIngreso.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
-        jLabelIngreso.setText("Ingreso:");
-        jPanelPizarron.add(jLabelIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 110, 30));
-        jPanelPizarron.add(jDayChooserCalendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, 100));
+        jLabelIngreso.setText("Fecha de Ingreso");
+        jPanelPizarron.add(jLabelIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 220, 50));
+        jPanelPizarron.add(jDateChooserIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 210, 30));
 
         jLabelHuespedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47093733_539474476553066_5090645292215173120_n.jpg"))); // NOI18N
-        jPanelPizarron.add(jLabelHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 489, 526));
+        jPanelPizarron.add(jLabelHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 830, 526));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPizarron, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanelPizarron, javax.swing.GroupLayout.PREFERRED_SIZE, 704, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPizarron, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelPizarron, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -140,7 +142,7 @@ public class Altas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDayChooser jDayChooserCalendario;
+    private com.toedter.calendar.JDateChooser jDateChooserIngreso;
     private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelCuidadOr;
     private javax.swing.JLabel jLabelDias;
