@@ -5,6 +5,12 @@
  */
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
  *
  * @author IZTROW
@@ -18,6 +24,7 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         initComponents();
     }
 
+    MySqlConn conn;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +53,12 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         jLabelPassword.setFont(new java.awt.Font("Trajan Pro", 1, 36)); // NOI18N
         jLabelPassword.setText("Password:");
         jPanelPizarron.add(jLabelPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 230, 40));
+
+        jTextFieldLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldLoginKeyPressed(evt);
+            }
+        });
         jPanelPizarron.add(jTextFieldLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 190, 30));
 
         jLabelLogin.setFont(new java.awt.Font("Trajan Pro", 1, 36)); // NOI18N
@@ -55,6 +68,11 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
 
         jButtonLOGIN.setText("LOGIN");
         jButtonLOGIN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButtonLOGIN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLOGINActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jButtonLOGIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 110, 50));
 
         jLabelTitulo.setBackground(new java.awt.Color(255, 255, 255));
@@ -89,6 +107,40 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonLOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLOGINActionPerformed
+        // TODO add your handling code here:
+        String nom,nom2,query,password;
+        char[] pass;
+        nom = this.jTextFieldLogin.getText().trim();
+        pass = this.jPassword.getPassword();
+        query = "select * from usuario where nom = " + "'" + nom + "'";
+        this.conn.Consult(query);
+        try{
+            String password2 = this.conn.rs.getString(2);
+            password = new String(pass);
+            String contraseña = DigestUtils.md5Hex(password);
+            if(password2.equals(contraseña)){
+                JOptionPane.showMessageDialog(this,"Bienvenido " + this.conn.rs.getString(1) + ".");
+            }else{
+                JOptionPane.showMessageDialog(this,"Error en la contraseña");
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(this,"No existe la cuenta");
+        }
+        this.jTextFieldLogin.setText("");
+        this.jPassword.setText("");
+        PruebaInterfazGrafica port = new PruebaInterfazGrafica();
+        //this.setVisible(false);
+        
+    }//GEN-LAST:event_jButtonLOGINActionPerformed
+
+    private void jTextFieldLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLoginKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            
+        }
+    }//GEN-LAST:event_jTextFieldLoginKeyPressed
 
     /**
      * @param args the command line arguments

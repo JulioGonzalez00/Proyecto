@@ -18,7 +18,8 @@ public class ProyectoProgra {
             System.out.println("Error al dormir el hilo");
         }
         port.cerrar();
-        //login.setVisible(true);
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
     }
     
 }
