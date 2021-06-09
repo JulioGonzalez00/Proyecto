@@ -7,7 +7,6 @@ package proyectoprogra;
 
 import controlMySql.MySqlConn;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
@@ -23,6 +22,7 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
 
     /**
      * Creates new form PruebaInterfazGrafica
+     * @param conn
      */
     public PruebaInterfazGrafica(MySqlConn conn) {
         this.conn = conn;
@@ -33,7 +33,7 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         initComponents();
     }
 
-    static MySqlConn conn;
+    MySqlConn conn;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,19 +200,16 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PruebaInterfazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PruebaInterfazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PruebaInterfazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PruebaInterfazGrafica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new PruebaInterfazGrafica().setVisible(true);
             }
