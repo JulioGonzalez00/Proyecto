@@ -156,7 +156,7 @@ public class Altas extends javax.swing.JFrame {
 
         jComboBoxTipo.setFont(new java.awt.Font("Sitka Small", 1, 12)); // NOI18N
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sencilla", "Doble ", "Triple" }));
-        jPanelPizarron.add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
+        jPanelPizarron.add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, -1, -1));
 
         jLabelTipo.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
         jLabelTipo.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,13 +186,24 @@ public class Altas extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nom,origen;
         Date fecha;
-        int huespedes,dias;
+        int huespedes,dias,tipo;
         nom = this.jTextFieldCliente.getText().trim();
         origen = this.jTextFieldCiudad.getText().trim();
         fecha = this.jDateChooserIngreso.getDate();
         huespedes = Integer.parseInt(this.jSpinnerHuespedes.getValue().toString().trim());
         dias = Integer.parseInt(this.jSpinnerDias.getValue().toString().trim());
-        this.dispose();
+        switch(this.jComboBoxTipo.getSelectedIndex()){
+            case 0:
+                tipo = 1;
+                break;
+            case 1:
+                tipo = 2;
+                break;
+            case 2:
+                tipo = 3;
+                break;
+        }
+        //this.dispose();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**
