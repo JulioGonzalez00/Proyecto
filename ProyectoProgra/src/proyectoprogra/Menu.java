@@ -6,6 +6,9 @@
 package proyectoprogra;
 
 import controlMySql.MySqlConn;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import javax.swing.JFrame;
 
 /**
  *
@@ -77,6 +80,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuClientes.setText("Clientes");
 
         jMenuItemAltas.setText("Ingreso");
+        jMenuItemAltas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAltasActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jMenuItemAltas);
 
         jMenuItemBajas.setText("Salida");
@@ -103,6 +111,45 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
+
+    private void jMenuItemAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAltasActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Altas altas = new Altas(this.conn);
+        altas.setVisible(true);
+        altas.setLocationRelativeTo(this);
+        altas.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemAltasActionPerformed
 
     /**
      * @param args the command line arguments

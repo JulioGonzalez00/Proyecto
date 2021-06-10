@@ -5,15 +5,24 @@
  */
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+
 /**
  *
  * @author IZTROW
  */
 public class Altas extends javax.swing.JFrame {
 
+    MySqlConn conn;
+
+    public Altas(MySqlConn conn) {
+        this.conn = conn;
+        initComponents();
+    }
     /**
      * Creates new form Altas
      */
+            
     public Altas() {
         initComponents();
     }
@@ -30,21 +39,20 @@ public class Altas extends javax.swing.JFrame {
         jPanelPizarron = new javax.swing.JPanel();
         jLabelTitulo = new javax.swing.JLabel();
         jLabelCliente = new javax.swing.JLabel();
-        jLabelTipoHab = new javax.swing.JLabel();
         jLabelCuidadOr = new javax.swing.JLabel();
         jLabelTotHuespedes = new javax.swing.JLabel();
         jLabelDias = new javax.swing.JLabel();
         jTextFieldCliente = new javax.swing.JTextField();
-        jTextFieldTipo = new javax.swing.JTextField();
         jSpinnerDias = new javax.swing.JSpinner();
         jSpinnerHuespedes = new javax.swing.JSpinner();
         jTextFieldCiudad = new javax.swing.JTextField();
         jLabelLema = new javax.swing.JLabel();
         jLabelIngreso = new javax.swing.JLabel();
         jDateChooserIngreso = new com.toedter.calendar.JDateChooser();
+        jButtonConfirmar = new javax.swing.JButton();
         jLabelHuespedes = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelPizarron.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -54,26 +62,25 @@ public class Altas extends javax.swing.JFrame {
         jPanelPizarron.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 260, 60));
 
         jLabelCliente.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelCliente.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCliente.setText("Cliente:");
         jPanelPizarron.add(jLabelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 110, 60));
 
-        jLabelTipoHab.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
-        jLabelTipoHab.setText("Tipo de Habitación:");
-        jPanelPizarron.add(jLabelTipoHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 270, 50));
-
         jLabelCuidadOr.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelCuidadOr.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCuidadOr.setText("Cuidad de Origen: ");
         jPanelPizarron.add(jLabelCuidadOr, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 240, 30));
 
         jLabelTotHuespedes.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelTotHuespedes.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTotHuespedes.setText("Total de Húespedes:");
         jPanelPizarron.add(jLabelTotHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 270, 40));
 
         jLabelDias.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelDias.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDias.setText("Días de estancia:");
         jPanelPizarron.add(jLabelDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 270, 30));
         jPanelPizarron.add(jTextFieldCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 30));
-        jPanelPizarron.add(jTextFieldTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 130, 30));
         jPanelPizarron.add(jSpinnerDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 100, 30));
         jPanelPizarron.add(jSpinnerHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, 100, 30));
         jPanelPizarron.add(jTextFieldCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, 130, 30));
@@ -83,9 +90,18 @@ public class Altas extends javax.swing.JFrame {
         jPanelPizarron.add(jLabelLema, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 340, 40));
 
         jLabelIngreso.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
-        jLabelIngreso.setText("Fecha de Ingreso");
-        jPanelPizarron.add(jLabelIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 220, 50));
-        jPanelPizarron.add(jDateChooserIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 210, 30));
+        jLabelIngreso.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelIngreso.setText("Fecha de Ingreso:");
+        jPanelPizarron.add(jLabelIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 240, 50));
+        jPanelPizarron.add(jDateChooserIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 150, 30));
+
+        jButtonConfirmar.setText("Registrar");
+        jButtonConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfirmarActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jButtonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, 140, 40));
 
         jLabelHuespedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47093733_539474476553066_5090645292215173120_n.jpg"))); // NOI18N
         jPanelPizarron.add(jLabelHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 830, 526));
@@ -105,6 +121,12 @@ public class Altas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
+        // TODO add your handling code here:
+        String nom,origen;
+        this.dispose();
+    }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +164,7 @@ public class Altas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonConfirmar;
     private com.toedter.calendar.JDateChooser jDateChooserIngreso;
     private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelCuidadOr;
@@ -149,7 +172,6 @@ public class Altas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelHuespedes;
     private javax.swing.JLabel jLabelIngreso;
     private javax.swing.JLabel jLabelLema;
-    private javax.swing.JLabel jLabelTipoHab;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTotHuespedes;
     private javax.swing.JPanel jPanelPizarron;
@@ -157,6 +179,5 @@ public class Altas extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerHuespedes;
     private javax.swing.JTextField jTextFieldCiudad;
     private javax.swing.JTextField jTextFieldCliente;
-    private javax.swing.JTextField jTextFieldTipo;
     // End of variables declaration//GEN-END:variables
 }
