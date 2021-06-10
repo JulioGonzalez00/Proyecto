@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectoprogra;
 
-/**
- *
- * @author Julio
- */
+import controlMySql.MySqlConn;
+
+
 public class ProyectoProgra {
 
     /**
@@ -16,9 +10,19 @@ public class ProyectoProgra {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hola que tal compañeros");
-        System.out.println("Cambio de rama y de dama xd");
-        
+        MySqlConn conn = new MySqlConn();
+        PortadaHotel port = new PortadaHotel();
+        PruebaInterfazGrafica login = new PruebaInterfazGrafica(conn);
+        port.setVisible(true);
+        port.setLocationRelativeTo(null);
+        try{
+            Thread.sleep(1000);
+        }catch(InterruptedException ex){
+            System.out.println("Error al dormir el hilo");
+        }
+        port.cerrar();
+        login.setVisible(true);
+        login.setLocationRelativeTo(null);
     }
     
 }
