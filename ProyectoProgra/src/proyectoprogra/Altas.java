@@ -8,6 +8,8 @@ package proyectoprogra;
 import controlMySql.MySqlConn;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,30 +28,30 @@ public class Altas extends javax.swing.JFrame {
         this.disponibles[3] = new Habitacion(204,1,false);
         this.disponibles[4] = new Habitacion(205,1,false);
         this.disponibles[5] = new Habitacion(206,1,false);
-        this.disponibles[6] = new Habitacion(207,1,false);
-        this.disponibles[7] = new Habitacion(208,1,false);
-        this.disponibles[8] = new Habitacion(209,1,false);
-        this.disponibles[9] = new Habitacion(210,1,false);
-        this.disponibles[10] = new Habitacion(211,1,false);
-        this.disponibles[11] = new Habitacion(212,1,false);
-        this.disponibles[12] = new Habitacion(213,1,false);
-        this.disponibles[13] = new Habitacion(214,1,false);
-        this.disponibles[14] = new Habitacion(215,1,false);
+        this.disponibles[6] = new Habitacion(207,2,false);
+        this.disponibles[7] = new Habitacion(208,2,false);
+        this.disponibles[8] = new Habitacion(209,2,false);
+        this.disponibles[9] = new Habitacion(210,2,false);
+        this.disponibles[10] = new Habitacion(211,2,false);
+        this.disponibles[11] = new Habitacion(212,3,false);
+        this.disponibles[12] = new Habitacion(213,3,false);
+        this.disponibles[13] = new Habitacion(214,3,false);
+        this.disponibles[14] = new Habitacion(215,3,false);
         this.disponibles[15] = new Habitacion(301,1,false);
         this.disponibles[16] = new Habitacion(302,1,false);
         this.disponibles[17] = new Habitacion(303,1,false);
         this.disponibles[18] = new Habitacion(304,1,false);
-        this.disponibles[19] = new Habitacion(305,1,false);
-        this.disponibles[20] = new Habitacion(306,1,false);
-        this.disponibles[21] = new Habitacion(307,1,false);
-        this.disponibles[22] = new Habitacion(308,1,false);
-        this.disponibles[23] = new Habitacion(309,1,false);
-        this.disponibles[24] = new Habitacion(310,1,false);
-        this.disponibles[25] = new Habitacion(311,1,false);
-        this.disponibles[26] = new Habitacion(312,1,false);
-        this.disponibles[27] = new Habitacion(313,1,false);
-        this.disponibles[28] = new Habitacion(314,1,false);
-        this.disponibles[29] = new Habitacion(315,1,false);
+        this.disponibles[19] = new Habitacion(305,2,false);
+        this.disponibles[20] = new Habitacion(306,2,false);
+        this.disponibles[21] = new Habitacion(307,2,false);
+        this.disponibles[22] = new Habitacion(308,2,false);
+        this.disponibles[23] = new Habitacion(309,2,false);
+        this.disponibles[24] = new Habitacion(310,2,false);
+        this.disponibles[25] = new Habitacion(311,3,false);
+        this.disponibles[26] = new Habitacion(312,3,false);
+        this.disponibles[27] = new Habitacion(313,3,false);
+        this.disponibles[28] = new Habitacion(314,3,false);
+        this.disponibles[29] = new Habitacion(315,3,false);
         this.conn = conn;
         initComponents();
         this.revisahab();
@@ -101,6 +103,9 @@ public class Altas extends javax.swing.JFrame {
         jButtonConfirmar = new javax.swing.JButton();
         jComboBoxTipo = new javax.swing.JComboBox();
         jLabelTipo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListHab = new javax.swing.JList();
         jLabelHuespedes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -156,12 +161,26 @@ public class Altas extends javax.swing.JFrame {
 
         jComboBoxTipo.setFont(new java.awt.Font("Sitka Small", 1, 12)); // NOI18N
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sencilla", "Doble ", "Triple" }));
+        jComboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 470, -1, -1));
 
         jLabelTipo.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
         jLabelTipo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTipo.setText("Tipo de Habitacion:");
         jPanelPizarron.add(jLabelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Sitka Small", 1, 22)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Habitacion");
+        jPanelPizarron.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
+
+        jScrollPane1.setViewportView(jListHab);
+
+        jPanelPizarron.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 140, 70));
 
         jLabelHuespedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47093733_539474476553066_5090645292215173120_n.jpg"))); // NOI18N
         jPanelPizarron.add(jLabelHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 830, 526));
@@ -184,12 +203,16 @@ public class Altas extends javax.swing.JFrame {
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
-        String nom,origen;
+        String nom,origen,query;
+        String parte1, parte2;
         Date fecha;
-        int huespedes,dias,tipo;
+        long mil;
+        int huespedes,dias,tipo=1,habitacion;
         nom = this.jTextFieldCliente.getText().trim();
         origen = this.jTextFieldCiudad.getText().trim();
         fecha = this.jDateChooserIngreso.getDate();
+        mil = fecha.getTime();
+        java.sql.Date fecha2 = new java.sql.Date(mil);
         huespedes = Integer.parseInt(this.jSpinnerHuespedes.getValue().toString().trim());
         dias = Integer.parseInt(this.jSpinnerDias.getValue().toString().trim());
         switch(this.jComboBoxTipo.getSelectedIndex()){
@@ -203,8 +226,48 @@ public class Altas extends javax.swing.JFrame {
                 tipo = 3;
                 break;
         }
-        //this.dispose();
+        habitacion = Integer.parseInt(this.jListHab.getSelectedValue().toString());
+        if(huespedes <= tipo+2){
+            parte1 = "Insert into habitaciones (nom,habitacion,origen,tipohab,dias,fecha,totalOcup) values (";
+            parte2 = "'"+nom+"','"+habitacion+"','"+origen+"','"+tipo+"','"+dias+"','"+fecha2+"','"+huespedes+"')";
+            query = parte1+parte2;
+            this.conn.Update(query);
+            this.dispose();
+        }else{ 
+            JOptionPane.showMessageDialog(this,"El numero de huespedes extra puede exceder solo en 2 al tipo de habitacion.");
+        }
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
+
+    private void jComboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel <String> lista = new DefaultListModel<>();
+        switch(this.jComboBoxTipo.getSelectedIndex()){
+            case 0:
+                for (int i=0; i < this.disponibles.length; i++) {
+                    if(this.disponibles[i].tipo == 1 && this.disponibles[i].libre == true){
+                        lista.addElement(""+this.disponibles[i].numero);
+                    }
+                }
+                this.jListHab.setModel(lista);
+                break;
+            case 1:
+                for (int i=0; i < this.disponibles.length; i++) {
+                    if(this.disponibles[i].tipo == 2 && this.disponibles[i].libre == true){
+                        lista.addElement(""+this.disponibles[i].numero);
+                    }
+                }
+                this.jListHab.setModel(lista);
+                break;
+            case 2:
+                for (int i=0; i < this.disponibles.length; i++) {
+                    if(this.disponibles[i].tipo == 3 && this.disponibles[i].libre == true){
+                        lista.addElement(""+this.disponibles[i].numero);
+                    }
+                }
+                this.jListHab.setModel(lista);
+                break;
+        }
+    }//GEN-LAST:event_jComboBoxTipoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +308,7 @@ public class Altas extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConfirmar;
     private javax.swing.JComboBox jComboBoxTipo;
     private com.toedter.calendar.JDateChooser jDateChooserIngreso;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelCuidadOr;
     private javax.swing.JLabel jLabelDias;
@@ -254,7 +318,9 @@ public class Altas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTipo;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTotHuespedes;
+    private javax.swing.JList jListHab;
     private javax.swing.JPanel jPanelPizarron;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerDias;
     private javax.swing.JSpinner jSpinnerHuespedes;
     private javax.swing.JTextField jTextFieldCiudad;

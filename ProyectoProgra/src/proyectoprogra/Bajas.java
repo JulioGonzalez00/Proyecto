@@ -5,15 +5,25 @@
  */
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+
 /**
  *
  * @author IZTROW
  */
 public class Bajas extends javax.swing.JFrame {
 
+    MySqlConn conn;
     /**
      * Creates new form Bajas
+     * @param conn
      */
+    public Bajas(MySqlConn conn) {
+        this.conn = conn;
+        initComponents();
+    }
     public Bajas() {
         initComponents();
     }
@@ -35,47 +45,98 @@ public class Bajas extends javax.swing.JFrame {
         jLabelCuenta = new javax.swing.JLabel();
         jLabelDiasEstancia = new javax.swing.JLabel();
         jLabelExtras = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jLabelCuenta2 = new javax.swing.JLabel();
+        jLabelNom = new javax.swing.JLabel();
+        jButtonBaja = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelPizarron.setPreferredSize(new java.awt.Dimension(490, 526));
         jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelCheckOut.setFont(new java.awt.Font("Sitka Small", 1, 48)); // NOI18N
+        jLabelCheckOut.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCheckOut.setText("Check Out");
-        jPanelPizarron.add(jLabelCheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 270, 70));
+        jPanelPizarron.add(jLabelCheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 270, 70));
 
         jLabelLema.setFont(new java.awt.Font("Trajan Pro", 1, 18)); // NOI18N
-        jLabelLema.setForeground(new java.awt.Color(255, 153, 153));
+        jLabelLema.setForeground(new java.awt.Color(234, 223, 223));
         jLabelLema.setText("¡Vuelva pronto al Paraiso!");
-        jPanelPizarron.add(jLabelLema, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, 60));
+        jPanelPizarron.add(jLabelLema, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, 60));
 
         jLabelNumeroHab.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelNumeroHab.setForeground(new java.awt.Color(255, 255, 255));
         jLabelNumeroHab.setText("Numero de Habitación:");
-        jPanelPizarron.add(jLabelNumeroHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 310, 50));
-        jPanelPizarron.add(jTextFieldNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, 100, 30));
+        jPanelPizarron.add(jLabelNumeroHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 310, 50));
+
+        jTextFieldNum.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNumKeyPressed(evt);
+            }
+        });
+        jPanelPizarron.add(jTextFieldNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 100, 30));
 
         jLabelCuenta.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelCuenta.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCuenta.setText("Cuenta:");
-        jPanelPizarron.add(jLabelCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 150, 30));
+        jPanelPizarron.add(jLabelCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 150, 30));
 
         jLabelDiasEstancia.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
-        jLabelDiasEstancia.setText("Dias de Estancia:");
-        jPanelPizarron.add(jLabelDiasEstancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 220, 30));
+        jLabelDiasEstancia.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDiasEstancia.setText("Nombre del cliente:");
+        jPanelPizarron.add(jLabelDiasEstancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 260, 30));
 
         jLabelExtras.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelExtras.setForeground(new java.awt.Color(255, 255, 255));
         jLabelExtras.setText("Cargos Extra:");
-        jPanelPizarron.add(jLabelExtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 190, 50));
+        jPanelPizarron.add(jLabelExtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 190, 50));
+
+        jCheckBox1.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBox1.setText("Servicio a la Habitacion");
+        jPanelPizarron.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+
+        jCheckBox2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBox2.setText("Servicio de Bar");
+        jPanelPizarron.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+
+        jCheckBox3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBox3.setText("Servicio de Tintoreria");
+        jPanelPizarron.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 250, -1));
+
+        jCheckBox4.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBox4.setText("Servicio de Niñera");
+        jPanelPizarron.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
+
+        jCheckBox5.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBox5.setText("Servicio de SPA");
+        jPanelPizarron.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
+
+        jLabelCuenta2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLabelCuenta2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelPizarron.add(jLabelCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 310, 30));
+
+        jLabelNom.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jLabelNom.setForeground(new java.awt.Color(255, 255, 255));
+        jPanelPizarron.add(jLabelNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 270, 30));
+
+        jButtonBaja.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jButtonBaja.setText("Realizar la baja");
+        jPanelPizarron.add(jButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, -1, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47073000_539474563219724_1011172439784161280_n.jpg"))); // NOI18N
-        jPanelPizarron.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 530));
+        jPanelPizarron.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 0, 770, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPizarron, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelPizarron, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,6 +145,24 @@ public class Bajas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldNumKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            int hab;
+            String query;
+            hab = Integer.parseInt(this.jTextFieldNum.getText().trim());
+            query = "SELECT * FROM habitaciones WHERE habitaciones.habitacion = '" + hab + "'";
+            this.conn.Consult(query);
+            try{
+                String nombre = this.conn.rs.getString(1);
+                this.jLabelNom.setText(nombre);
+                System.out.println(nombre);
+            }catch(SQLException ex){
+                System.out.println("Habitacion no ocupada");
+            }
+        }
+    }//GEN-LAST:event_jTextFieldNumKeyPressed
 
     /**
      * @param args the command line arguments
@@ -121,12 +200,20 @@ public class Bajas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBaja;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabelCheckOut;
     private javax.swing.JLabel jLabelCuenta;
+    private javax.swing.JLabel jLabelCuenta2;
     private javax.swing.JLabel jLabelDiasEstancia;
     private javax.swing.JLabel jLabelExtras;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JLabel jLabelLema;
+    private javax.swing.JLabel jLabelNom;
     private javax.swing.JLabel jLabelNumeroHab;
     private javax.swing.JPanel jPanelPizarron;
     private javax.swing.JTextField jTextFieldNum;

@@ -88,6 +88,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuClientes.add(jMenuItemAltas);
 
         jMenuItemBajas.setText("Salida");
+        jMenuItemBajas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBajasActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jMenuItemBajas);
 
         jMenuItemConsultas.setText("Consultas");
@@ -150,6 +155,45 @@ public class Menu extends javax.swing.JFrame {
                     }
                 });
     }//GEN-LAST:event_jMenuItemAltasActionPerformed
+
+    private void jMenuItemBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBajasActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Bajas bajas = new Bajas(this.conn);
+        bajas.setVisible(true);
+        bajas.setLocationRelativeTo(this);
+        bajas.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                }); 
+    }//GEN-LAST:event_jMenuItemBajasActionPerformed
 
     /**
      * @param args the command line arguments
