@@ -6,6 +6,8 @@
 package proyectoprogra;
 
 import controlMySql.MySqlConn;
+import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -14,10 +16,43 @@ import controlMySql.MySqlConn;
 public class Altas extends javax.swing.JFrame {
 
     MySqlConn conn;
-
+    Habitacion disponibles[];
+    
     public Altas(MySqlConn conn) {
+        this.disponibles = new Habitacion[30];
+        this.disponibles[0] = new Habitacion(201,1,false);
+        this.disponibles[1] = new Habitacion(202,1,false);
+        this.disponibles[2] = new Habitacion(203,1,false);
+        this.disponibles[3] = new Habitacion(204,1,false);
+        this.disponibles[4] = new Habitacion(205,1,false);
+        this.disponibles[5] = new Habitacion(206,1,false);
+        this.disponibles[6] = new Habitacion(207,1,false);
+        this.disponibles[7] = new Habitacion(208,1,false);
+        this.disponibles[8] = new Habitacion(209,1,false);
+        this.disponibles[9] = new Habitacion(210,1,false);
+        this.disponibles[10] = new Habitacion(211,1,false);
+        this.disponibles[11] = new Habitacion(212,1,false);
+        this.disponibles[12] = new Habitacion(213,1,false);
+        this.disponibles[13] = new Habitacion(214,1,false);
+        this.disponibles[14] = new Habitacion(215,1,false);
+        this.disponibles[15] = new Habitacion(301,1,false);
+        this.disponibles[16] = new Habitacion(302,1,false);
+        this.disponibles[17] = new Habitacion(303,1,false);
+        this.disponibles[18] = new Habitacion(304,1,false);
+        this.disponibles[19] = new Habitacion(305,1,false);
+        this.disponibles[20] = new Habitacion(306,1,false);
+        this.disponibles[21] = new Habitacion(307,1,false);
+        this.disponibles[22] = new Habitacion(308,1,false);
+        this.disponibles[23] = new Habitacion(309,1,false);
+        this.disponibles[24] = new Habitacion(310,1,false);
+        this.disponibles[25] = new Habitacion(311,1,false);
+        this.disponibles[26] = new Habitacion(312,1,false);
+        this.disponibles[27] = new Habitacion(313,1,false);
+        this.disponibles[28] = new Habitacion(314,1,false);
+        this.disponibles[29] = new Habitacion(315,1,false);
         this.conn = conn;
         initComponents();
+        this.revisahab();
     }
     /**
      * Creates new form Altas
@@ -26,7 +61,21 @@ public class Altas extends javax.swing.JFrame {
     public Altas() {
         initComponents();
     }
-
+    private void revisahab(){
+        String query;
+        for (int i = 0; i < 30; i++) {
+            query = "select * from habitaciones where habitacion = " + "'" + this.disponibles[i].numero + "'";
+            try{
+                this.conn.Consult(query);
+                if(!this.conn.rs.getString(1).isEmpty()){
+                    
+                }
+            }catch(SQLException ex){
+                this.disponibles[i].libre=true;
+            }
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +99,8 @@ public class Altas extends javax.swing.JFrame {
         jLabelIngreso = new javax.swing.JLabel();
         jDateChooserIngreso = new com.toedter.calendar.JDateChooser();
         jButtonConfirmar = new javax.swing.JButton();
+        jComboBoxTipo = new javax.swing.JComboBox();
+        jLabelTipo = new javax.swing.JLabel();
         jLabelHuespedes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -103,6 +154,15 @@ public class Altas extends javax.swing.JFrame {
         });
         jPanelPizarron.add(jButtonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 460, 140, 40));
 
+        jComboBoxTipo.setFont(new java.awt.Font("Sitka Small", 1, 12)); // NOI18N
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sencilla", "Doble ", "Triple" }));
+        jPanelPizarron.add(jComboBoxTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, -1));
+
+        jLabelTipo.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
+        jLabelTipo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTipo.setText("Tipo de Habitacion:");
+        jPanelPizarron.add(jLabelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
+
         jLabelHuespedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47093733_539474476553066_5090645292215173120_n.jpg"))); // NOI18N
         jPanelPizarron.add(jLabelHuespedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 0, 830, 526));
 
@@ -125,6 +185,13 @@ public class Altas extends javax.swing.JFrame {
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed
         // TODO add your handling code here:
         String nom,origen;
+        Date fecha;
+        int huespedes,dias;
+        nom = this.jTextFieldCliente.getText().trim();
+        origen = this.jTextFieldCiudad.getText().trim();
+        fecha = this.jDateChooserIngreso.getDate();
+        huespedes = Integer.parseInt(this.jSpinnerHuespedes.getValue().toString().trim());
+        dias = Integer.parseInt(this.jSpinnerDias.getValue().toString().trim());
         this.dispose();
     }//GEN-LAST:event_jButtonConfirmarActionPerformed
 
@@ -165,6 +232,7 @@ public class Altas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConfirmar;
+    private javax.swing.JComboBox jComboBoxTipo;
     private com.toedter.calendar.JDateChooser jDateChooserIngreso;
     private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelCuidadOr;
@@ -172,6 +240,7 @@ public class Altas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelHuespedes;
     private javax.swing.JLabel jLabelIngreso;
     private javax.swing.JLabel jLabelLema;
+    private javax.swing.JLabel jLabelTipo;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelTotHuespedes;
     private javax.swing.JPanel jPanelPizarron;
