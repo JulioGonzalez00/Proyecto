@@ -8,6 +8,12 @@ package proyectoprogra;
 import controlMySql.MySqlConn;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 /**
@@ -16,16 +22,29 @@ import javax.swing.JFrame;
  */
 public class Menu extends javax.swing.JFrame {
 
+    Clip sonido;
     MySqlConn conn;
     /**
      * Creates new form Prueba
      * @param conn
      */
-    public Menu(MySqlConn conn){
+    public Menu(MySqlConn conn) {
         this.conn = conn;
+        try{
+            sonido = AudioSystem.getClip();
+            sonido.open(AudioSystem.getAudioInputStream(new File("src/recursos/cancion.wav").getAbsoluteFile()));
+            sonido.start();
+            sonido.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (LineUnavailableException ex) {
+            System.out.println("1");
+        } catch (IOException ex) {
+            System.out.println("2");
+        } catch (UnsupportedAudioFileException ex) {
+            System.out.println("3");
+        }
         initComponents();
-    }
-    
+    }   
+        
     public Menu() {
         initComponents();
     }
@@ -47,7 +66,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuClientes = new javax.swing.JMenu();
         jMenuItemAltas = new javax.swing.JMenuItem();
         jMenuItemBajas = new javax.swing.JMenuItem();
-        jMenuItemConsultas = new javax.swing.JMenuItem();
+        jMenuConsultas = new javax.swing.JMenu();
+        jMenuItemGaleria = new javax.swing.JMenuItem();
         jMenuAdmin = new javax.swing.JMenu();
         jMenuItemAltas2 = new javax.swing.JMenuItem();
 
@@ -95,8 +115,16 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuClientes.add(jMenuItemBajas);
 
-        jMenuItemConsultas.setText("Consultas");
-        jMenuClientes.add(jMenuItemConsultas);
+        jMenuConsultas.setText("Consultas");
+        jMenuClientes.add(jMenuConsultas);
+
+        jMenuItemGaleria.setText("Galeria");
+        jMenuItemGaleria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemGaleriaActionPerformed(evt);
+            }
+        });
+        jMenuClientes.add(jMenuItemGaleria);
 
         jMenuBar1.add(jMenuClientes);
 
@@ -114,6 +142,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButtonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarSesionActionPerformed
         // TODO add your handling code here:
+        sonido.stop();
         this.dispose();
     }//GEN-LAST:event_jButtonCerrarSesionActionPerformed
 
@@ -195,6 +224,46 @@ public class Menu extends javax.swing.JFrame {
                 }); 
     }//GEN-LAST:event_jMenuItemBajasActionPerformed
 
+    private void jMenuItemGaleriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemGaleriaActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Galeria gal = new Galeria();
+        gal.setVisible(true);
+        gal.setLocationRelativeTo(this);
+        gal.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    
+    }//GEN-LAST:event_jMenuItemGaleriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,19 +280,16 @@ public class Menu extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Menu().setVisible(true);
             }
@@ -237,10 +303,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAdmin;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuClientes;
+    private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenuItem jMenuItemAltas;
     private javax.swing.JMenuItem jMenuItemAltas2;
     private javax.swing.JMenuItem jMenuItemBajas;
-    private javax.swing.JMenuItem jMenuItemConsultas;
+    private javax.swing.JMenuItem jMenuItemGaleria;
     private javax.swing.JPanel jPanelPizarron;
     // End of variables declaration//GEN-END:variables
 }

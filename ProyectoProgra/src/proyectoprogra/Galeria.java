@@ -5,16 +5,28 @@
  */
 package proyectoprogra;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author IZTROW
  */
 public class Galeria extends javax.swing.JFrame {
 
+    ImageIcon imagenes[];
+    int pos;
     /**
      * Creates new form Galeria
      */
     public Galeria() {
+        pos = 0;
+        String imagen;
+        imagenes = new ImageIcon[6];
+        for (int i = 0; i < imagenes.length; i++) {
+            imagen = "/ImagenesGaleria/hotel"+(i+1)+".jpg";
+            //System.out.println(imagen);
+            imagenes[i] = new ImageIcon(getClass().getResource(imagen));
+        }
         initComponents();
     }
 
@@ -33,20 +45,35 @@ public class Galeria extends javax.swing.JFrame {
         jButtonSalir = new javax.swing.JButton();
         jLabelImagen = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonSiguiente.setText("Siguiente");
-        jPanelPizarron.add(jButtonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 270, 100, 40));
+        jButtonSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSiguienteActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jButtonSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, 100, 40));
 
         jButtonAnterior.setText("Anterior");
-        jPanelPizarron.add(jButtonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 100, 40));
+        jButtonAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnteriorActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jButtonAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 100, 40));
 
         jButtonSalir.setText("Salir");
-        jPanelPizarron.add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 80, 30));
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 80, 30));
 
-        jLabelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesGaleria/hotel7.jpg"))); // NOI18N
+        jLabelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesGaleria/hotel6.jpg"))); // NOI18N
         jPanelPizarron.add(jLabelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 350));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -66,6 +93,29 @@ public class Galeria extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSiguienteActionPerformed
+        // TODO add your handling code here:
+        this.jLabelImagen.setIcon(this.imagenes[pos]);
+        this.pos++;
+        if(this.pos == this.imagenes.length){
+            pos = 0;
+        }
+    }//GEN-LAST:event_jButtonSiguienteActionPerformed
+
+    private void jButtonAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnteriorActionPerformed
+        // TODO add your handling code here:
+        this.jLabelImagen.setIcon(this.imagenes[pos]);
+        this.pos--;
+        if(this.pos == -1){
+            pos = this.imagenes.length-1;
+        }
+    }//GEN-LAST:event_jButtonAnteriorActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     /**
      * @param args the command line arguments
