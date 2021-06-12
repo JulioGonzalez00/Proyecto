@@ -16,12 +16,14 @@ import java.sql.SQLException;
 public class Bajas extends javax.swing.JFrame {
 
     MySqlConn conn;
+    int tot;
     /**
      * Creates new form Bajas
      * @param conn
      */
     public Bajas(MySqlConn conn) {
         this.conn = conn;
+        tot = 0;
         initComponents();
     }
     public Bajas() {
@@ -158,6 +160,21 @@ public class Bajas extends javax.swing.JFrame {
                 String nombre = this.conn.rs.getString(1);
                 this.jLabelNom.setText(nombre);
                 System.out.println(nombre);
+                switch(this.conn.rs.getString(4)){
+                    case "1":
+                        this.tot += 600 * Integer.parseInt(this.conn.rs.getString(5));
+                        break;
+                    case "2":
+                        this.tot += 700 * Integer.parseInt(this.conn.rs.getString(5));
+                        break;
+                    case "3":
+                        this.tot += 800 * Integer.parseInt(this.conn.rs.getString(5));
+                        break;
+                }
+                if(Integer.parseInt(this.conn.rs.getString(7)) > Integer.parseInt(this.conn.rs.getString(4))){
+                    tot += (Integer.parseInt(this.conn.rs.getString(7))-Integer.parseInt(this.conn.rs.getString(4)))*150;
+                }
+                this.jLabelCuenta2.setText(""+tot);
             }catch(SQLException ex){
                 System.out.println("Habitacion no ocupada");
             }

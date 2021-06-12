@@ -9,7 +9,14 @@ import controlMySql.MySqlConn;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -20,12 +27,28 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 public class PruebaInterfazGrafica extends javax.swing.JFrame {
 
+    Clip sonido;
+    MySqlConn conn;
     /**
      * Creates new form PruebaInterfazGrafica
      * @param conn
      */
     public PruebaInterfazGrafica(MySqlConn conn) {
         this.conn = conn;
+        try{
+            sonido = AudioSystem.getClip();
+            sonido.open(AudioSystem.getAudioInputStream(new File("src/recursos/cancion.wav").getAbsoluteFile()));
+            FloatControl gainControl = (FloatControl) sonido.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-20.0f);
+            sonido.start();
+            sonido.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (LineUnavailableException ex) {
+            System.out.println("1");
+        } catch (IOException ex) {
+            System.out.println("2");
+        } catch (UnsupportedAudioFileException ex) {
+            System.out.println("3");
+        }
         initComponents();
     }
 
@@ -33,7 +56,6 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         initComponents();
     }
 
-    MySqlConn conn;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,7 +162,7 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
             if (password2.equals(contraseña)) {
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(this, "Bienvenido " + this.conn.rs.getString(1) + ".");
-                Menu menu = new Menu(this.conn);
+                Menu menu = new Menu(this.conn,sonido);
                 menu.setVisible(true);
                 menu.setLocationRelativeTo(null);
                 menu.addWindowListener(new WindowListener() {

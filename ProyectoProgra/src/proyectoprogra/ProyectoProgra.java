@@ -16,7 +16,7 @@ public class ProyectoProgra {
         port.setVisible(true);
         port.setLocationRelativeTo(null);
         try{
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }catch(InterruptedException ex){
             System.out.println("Error al dormir el hilo");
         }

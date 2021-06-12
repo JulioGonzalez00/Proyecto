@@ -44,6 +44,7 @@ public class Galeria extends javax.swing.JFrame {
         jButtonAnterior = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jLabelImagen = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,6 +76,10 @@ public class Galeria extends javax.swing.JFrame {
 
         jLabelImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImagenesGaleria/hotel6.jpg"))); // NOI18N
         jPanelPizarron.add(jLabelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 350));
+
+        jButton1.setFont(new java.awt.Font("Sitka Small", 1, 11)); // NOI18N
+        jButton1.setText("Pausar Musica");
+        jPanelPizarron.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 130, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,6 +158,7 @@ public class Galeria extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAnterior;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonSiguiente;
