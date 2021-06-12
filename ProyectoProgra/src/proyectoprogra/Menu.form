@@ -50,13 +50,91 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemGaleriaActionPerformed"/>
                   </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemOcupacion">
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemOcupacionP">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ocupacion"/>
+                    <Property name="text" type="java.lang.String" value="Ocupacion %"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemOcupacionActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemOcupacionPActionPerformed"/>
                   </Events>
+                </MenuItem>
+                <Menu class="javax.swing.JMenu" name="jMenuOcup">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ocupacion por tipo"/>
+                  </Properties>
+                  <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSencilla">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Sencilla"/>
+                      </Properties>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItemDoble">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Doble"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemDobleActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItemTriple">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Triple"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemTripleActionPerformed"/>
+                      </Events>
+                    </MenuItem>
+                  </SubComponents>
+                </Menu>
+                <Menu class="javax.swing.JMenu" name="jMenuHab">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Habitaciones por piso"/>
+                  </Properties>
+                  <SubComponents>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPiso1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Piso 1"/>
+                      </Properties>
+                    </MenuItem>
+                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItemPiso2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Piso 2"/>
+                      </Properties>
+                    </MenuItem>
+                  </SubComponents>
+                </Menu>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemLista">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Lista de Huespedes"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemNumBus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Buscar Habitacion"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemNomBus">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Buscar Huesped"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCostos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Costos de habitacion"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCostosActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemTot">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Total de habitaciones"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItemIngresos">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ingresos"/>
+                  </Properties>
                 </MenuItem>
               </SubComponents>
             </Menu>

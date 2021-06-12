@@ -8,6 +8,9 @@ package proyectoprogra;
 import controlMySql.MySqlConn;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,11 +50,11 @@ public class Bajas extends javax.swing.JFrame {
         jLabelCuenta = new javax.swing.JLabel();
         jLabelDiasEstancia = new javax.swing.JLabel();
         jLabelExtras = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBoxHab = new javax.swing.JCheckBox();
+        jCheckBoxBar = new javax.swing.JCheckBox();
+        jCheckBoxTint = new javax.swing.JCheckBox();
+        jCheckBoxNiñera = new javax.swing.JCheckBox();
+        jCheckBoxSPA = new javax.swing.JCheckBox();
         jLabelCuenta2 = new javax.swing.JLabel();
         jLabelNom = new javax.swing.JLabel();
         jButtonBaja = new javax.swing.JButton();
@@ -99,25 +102,60 @@ public class Bajas extends javax.swing.JFrame {
         jLabelExtras.setText("Cargos Extra:");
         jPanelPizarron.add(jLabelExtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 190, 50));
 
-        jCheckBox1.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jCheckBox1.setText("Servicio a la Habitacion");
-        jPanelPizarron.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jCheckBoxHab.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBoxHab.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBoxHab.setText("Servicio a la Habitacion");
+        jCheckBoxHab.setContentAreaFilled(false);
+        jCheckBoxHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxHabActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jCheckBoxHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
-        jCheckBox2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jCheckBox2.setText("Servicio de Bar");
-        jPanelPizarron.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
+        jCheckBoxBar.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBoxBar.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBoxBar.setText("Servicio de Bar");
+        jCheckBoxBar.setContentAreaFilled(false);
+        jCheckBoxBar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxBarActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jCheckBoxBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, -1, -1));
 
-        jCheckBox3.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jCheckBox3.setText("Servicio de Tintoreria");
-        jPanelPizarron.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 250, -1));
+        jCheckBoxTint.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBoxTint.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBoxTint.setText("Servicio de Tintoreria");
+        jCheckBoxTint.setContentAreaFilled(false);
+        jCheckBoxTint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxTintActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jCheckBoxTint, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 250, -1));
 
-        jCheckBox4.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jCheckBox4.setText("Servicio de Niñera");
-        jPanelPizarron.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
+        jCheckBoxNiñera.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBoxNiñera.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBoxNiñera.setText("Servicio de Niñera");
+        jCheckBoxNiñera.setContentAreaFilled(false);
+        jCheckBoxNiñera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxNiñeraActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jCheckBoxNiñera, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
-        jCheckBox5.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
-        jCheckBox5.setText("Servicio de SPA");
-        jPanelPizarron.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
+        jCheckBoxSPA.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jCheckBoxSPA.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBoxSPA.setText("Servicio de SPA");
+        jCheckBoxSPA.setContentAreaFilled(false);
+        jCheckBoxSPA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSPAActionPerformed(evt);
+            }
+        });
+        jPanelPizarron.add(jCheckBoxSPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, -1, -1));
 
         jLabelCuenta2.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabelCuenta2.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,6 +167,11 @@ public class Bajas extends javax.swing.JFrame {
 
         jButtonBaja.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jButtonBaja.setText("Realizar la baja");
+        jButtonBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBajaActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jButtonBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, -1, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47073000_539474563219724_1011172439784161280_n.jpg"))); // NOI18N
@@ -150,7 +193,13 @@ public class Bajas extends javax.swing.JFrame {
 
     private void jTextFieldNumKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumKeyPressed
         // TODO add your handling code here:
+        this.tot = 0;
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jCheckBoxBar.setSelected(false);
+            this.jCheckBoxSPA.setSelected(false);
+            this.jCheckBoxHab.setSelected(false);
+            this.jCheckBoxNiñera.setSelected(false);
+            this.jCheckBoxTint.setSelected(false);
             int hab;
             String query;
             hab = Integer.parseInt(this.jTextFieldNum.getText().trim());
@@ -172,7 +221,7 @@ public class Bajas extends javax.swing.JFrame {
                         break;
                 }
                 if(Integer.parseInt(this.conn.rs.getString(7)) > Integer.parseInt(this.conn.rs.getString(4))){
-                    tot += (Integer.parseInt(this.conn.rs.getString(7))-Integer.parseInt(this.conn.rs.getString(4)))*150;
+                    tot += ((Integer.parseInt(this.conn.rs.getString(7))-Integer.parseInt(this.conn.rs.getString(4)))*150)*Integer.parseInt(this.conn.rs.getString(5));
                 }
                 this.jLabelCuenta2.setText(""+tot);
             }catch(SQLException ex){
@@ -180,6 +229,87 @@ public class Bajas extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTextFieldNumKeyPressed
+
+    private void jCheckBoxNiñeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxNiñeraActionPerformed
+        // TODO add your handling code here:
+        if(this.jCheckBoxNiñera.isSelected()){
+            this.tot += 200;
+        }else{
+            this.tot -= 200;
+        }
+        this.jLabelCuenta2.setText(""+tot);
+    }//GEN-LAST:event_jCheckBoxNiñeraActionPerformed
+
+    private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
+        // TODO add your handling code here:
+        String hab = this.jTextFieldNum.getText().trim();
+        String query;
+        int cuenta = 0;
+        if(hab.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Numero de Habitacion vacio");
+        }else{
+            query = "DELETE FROM habitaciones WHERE habitaciones.habitacion = " + hab;
+            
+            int j = this.conn.Update(query);
+            if(j>0){
+                JOptionPane.showMessageDialog(this,"Baja realizada");
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this,"La baja no se pudo realizar");
+                return;
+            }
+        query = "SELECT * FROM habitaciones WHERE habitaciones.habitacion = '1'";
+        this.conn.Consult(query);
+            try {
+                cuenta = Integer.parseInt(this.conn.rs.getString(7));
+            } catch (SQLException ex) {
+                Logger.getLogger(Bajas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        cuenta+=tot;
+        query = "UPDATE `habitaciones` SET `totalOcup` = '"+ cuenta +"' WHERE `habitaciones`.`habitacion` = 1 ";
+        this.conn.Update(query);
+        }
+    }//GEN-LAST:event_jButtonBajaActionPerformed
+
+    private void jCheckBoxHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHabActionPerformed
+        // TODO add your handling code here:
+        if(this.jCheckBoxHab.isSelected()){
+            this.tot += 300;
+        }else{
+            this.tot -= 300;
+        }
+        this.jLabelCuenta2.setText(""+tot);
+    }//GEN-LAST:event_jCheckBoxHabActionPerformed
+
+    private void jCheckBoxTintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxTintActionPerformed
+        // TODO add your handling code here:
+        if(this.jCheckBoxTint.isSelected()){
+            this.tot += 100;
+        }else{
+            this.tot -= 100;
+        }
+        this.jLabelCuenta2.setText(""+tot);
+    }//GEN-LAST:event_jCheckBoxTintActionPerformed
+
+    private void jCheckBoxSPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSPAActionPerformed
+        // TODO add your handling code here:
+        if(this.jCheckBoxSPA.isSelected()){
+            this.tot += 300;
+        }else{
+            this.tot -= 300;
+        }
+        this.jLabelCuenta2.setText(""+tot);
+    }//GEN-LAST:event_jCheckBoxSPAActionPerformed
+
+    private void jCheckBoxBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxBarActionPerformed
+        // TODO add your handling code here:
+        if(this.jCheckBoxBar.isSelected()){
+            this.tot += 250;
+        }else{
+            this.tot -= 250;
+        }
+        this.jLabelCuenta2.setText(""+tot);
+    }//GEN-LAST:event_jCheckBoxBarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,11 +348,11 @@ public class Bajas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBaja;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JCheckBox jCheckBoxBar;
+    private javax.swing.JCheckBox jCheckBoxHab;
+    private javax.swing.JCheckBox jCheckBoxNiñera;
+    private javax.swing.JCheckBox jCheckBoxSPA;
+    private javax.swing.JCheckBox jCheckBoxTint;
     private javax.swing.JLabel jLabelCheckOut;
     private javax.swing.JLabel jLabelCuenta;
     private javax.swing.JLabel jLabelCuenta2;

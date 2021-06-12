@@ -60,7 +60,20 @@ public class Menu extends javax.swing.JFrame {
         jMenuItemAltas2 = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemGaleria = new javax.swing.JMenuItem();
-        jMenuItemOcupacion = new javax.swing.JMenuItem();
+        jMenuItemOcupacionP = new javax.swing.JMenuItem();
+        jMenuOcup = new javax.swing.JMenu();
+        jMenuItemSencilla = new javax.swing.JMenuItem();
+        jMenuItemDoble = new javax.swing.JMenuItem();
+        jMenuItemTriple = new javax.swing.JMenuItem();
+        jMenuHab = new javax.swing.JMenu();
+        jMenuItemPiso1 = new javax.swing.JMenuItem();
+        jMenuItemPiso2 = new javax.swing.JMenuItem();
+        jMenuItemLista = new javax.swing.JMenuItem();
+        jMenuItemNumBus = new javax.swing.JMenuItem();
+        jMenuItemNomBus = new javax.swing.JMenuItem();
+        jMenuItemCostos = new javax.swing.JMenuItem();
+        jMenuItemTot = new javax.swing.JMenuItem();
+        jMenuItemIngresos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -123,13 +136,69 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuItemGaleria);
 
-        jMenuItemOcupacion.setText("Ocupacion");
-        jMenuItemOcupacion.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemOcupacionP.setText("Ocupacion %");
+        jMenuItemOcupacionP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemOcupacionActionPerformed(evt);
+                jMenuItemOcupacionPActionPerformed(evt);
             }
         });
-        jMenuConsultas.add(jMenuItemOcupacion);
+        jMenuConsultas.add(jMenuItemOcupacionP);
+
+        jMenuOcup.setText("Ocupacion por tipo");
+
+        jMenuItemSencilla.setText("Sencilla");
+        jMenuOcup.add(jMenuItemSencilla);
+
+        jMenuItemDoble.setText("Doble");
+        jMenuItemDoble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDobleActionPerformed(evt);
+            }
+        });
+        jMenuOcup.add(jMenuItemDoble);
+
+        jMenuItemTriple.setText("Triple");
+        jMenuItemTriple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTripleActionPerformed(evt);
+            }
+        });
+        jMenuOcup.add(jMenuItemTriple);
+
+        jMenuConsultas.add(jMenuOcup);
+
+        jMenuHab.setText("Habitaciones por piso");
+
+        jMenuItemPiso1.setText("Piso 1");
+        jMenuHab.add(jMenuItemPiso1);
+
+        jMenuItemPiso2.setText("Piso 2");
+        jMenuHab.add(jMenuItemPiso2);
+
+        jMenuConsultas.add(jMenuHab);
+
+        jMenuItemLista.setText("Lista de Huespedes");
+        jMenuConsultas.add(jMenuItemLista);
+
+        jMenuItemNumBus.setText("Buscar Habitacion");
+        jMenuConsultas.add(jMenuItemNumBus);
+
+        jMenuItemNomBus.setText("Buscar Huesped");
+        jMenuConsultas.add(jMenuItemNomBus);
+
+        jMenuItemCostos.setText("Costos de habitacion");
+        jMenuItemCostos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCostosActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemCostos);
+
+        jMenuItemTot.setText("Total de habitaciones");
+        jMenuConsultas.add(jMenuItemTot);
+
+        jMenuItemIngresos.setText("Ingresos");
+        jMenuConsultas.add(jMenuItemIngresos);
 
         jMenuAdmin.add(jMenuConsultas);
 
@@ -264,7 +333,7 @@ public class Menu extends javax.swing.JFrame {
                 });
     }//GEN-LAST:event_jMenuItemGaleriaActionPerformed
 
-    private void jMenuItemOcupacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOcupacionActionPerformed
+    private void jMenuItemOcupacionPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemOcupacionPActionPerformed
         // TODO add your handling code here:
         final JFrame aux = this;
         this.setVisible(false);
@@ -301,7 +370,19 @@ public class Menu extends javax.swing.JFrame {
                     public void windowDeactivated(WindowEvent we) {
                     }
                 });
-    }//GEN-LAST:event_jMenuItemOcupacionActionPerformed
+    }//GEN-LAST:event_jMenuItemOcupacionPActionPerformed
+
+    private void jMenuItemDobleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDobleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemDobleActionPerformed
+
+    private void jMenuItemTripleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTripleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemTripleActionPerformed
+
+    private void jMenuItemCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCostosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemCostosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,11 +424,24 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuClientes;
     private javax.swing.JMenu jMenuConsultas;
+    private javax.swing.JMenu jMenuHab;
     private javax.swing.JMenuItem jMenuItemAltas;
     private javax.swing.JMenuItem jMenuItemAltas2;
     private javax.swing.JMenuItem jMenuItemBajas;
+    private javax.swing.JMenuItem jMenuItemCostos;
+    private javax.swing.JMenuItem jMenuItemDoble;
     private javax.swing.JMenuItem jMenuItemGaleria;
-    private javax.swing.JMenuItem jMenuItemOcupacion;
+    private javax.swing.JMenuItem jMenuItemIngresos;
+    private javax.swing.JMenuItem jMenuItemLista;
+    private javax.swing.JMenuItem jMenuItemNomBus;
+    private javax.swing.JMenuItem jMenuItemNumBus;
+    private javax.swing.JMenuItem jMenuItemOcupacionP;
+    private javax.swing.JMenuItem jMenuItemPiso1;
+    private javax.swing.JMenuItem jMenuItemPiso2;
+    private javax.swing.JMenuItem jMenuItemSencilla;
+    private javax.swing.JMenuItem jMenuItemTot;
+    private javax.swing.JMenuItem jMenuItemTriple;
+    private javax.swing.JMenu jMenuOcup;
     private javax.swing.JPanel jPanelPizarron;
     // End of variables declaration//GEN-END:variables
 }
