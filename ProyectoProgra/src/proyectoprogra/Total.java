@@ -11,11 +11,60 @@ package proyectoprogra;
  */
 public class Total extends javax.swing.JFrame {
 
+    Habitacion disponibles[];
     /**
      * Creates new form Total
      */
     public Total() {
+        this.disponibles = new Habitacion[30];
+        this.disponibles[0] = new Habitacion(201,1,false);
+        this.disponibles[1] = new Habitacion(202,1,false);
+        this.disponibles[2] = new Habitacion(203,1,false);
+        this.disponibles[3] = new Habitacion(204,1,false);
+        this.disponibles[4] = new Habitacion(205,1,false);
+        this.disponibles[5] = new Habitacion(206,1,false);
+        this.disponibles[6] = new Habitacion(207,2,false);
+        this.disponibles[7] = new Habitacion(208,2,false);
+        this.disponibles[8] = new Habitacion(209,2,false);
+        this.disponibles[9] = new Habitacion(210,2,false);
+        this.disponibles[10] = new Habitacion(211,2,false);
+        this.disponibles[11] = new Habitacion(212,3,false);
+        this.disponibles[12] = new Habitacion(213,3,false);
+        this.disponibles[13] = new Habitacion(214,3,false);
+        this.disponibles[14] = new Habitacion(215,3,false);
+        this.disponibles[15] = new Habitacion(301,1,false);
+        this.disponibles[16] = new Habitacion(302,1,false);
+        this.disponibles[17] = new Habitacion(303,1,false);
+        this.disponibles[18] = new Habitacion(304,1,false);
+        this.disponibles[19] = new Habitacion(305,2,false);
+        this.disponibles[20] = new Habitacion(306,2,false);
+        this.disponibles[21] = new Habitacion(307,2,false);
+        this.disponibles[22] = new Habitacion(308,2,false);
+        this.disponibles[23] = new Habitacion(309,2,false);
+        this.disponibles[24] = new Habitacion(310,2,false);
+        this.disponibles[25] = new Habitacion(311,3,false);
+        this.disponibles[26] = new Habitacion(312,3,false);
+        this.disponibles[27] = new Habitacion(313,3,false);
+        this.disponibles[28] = new Habitacion(314,3,false);
+        this.disponibles[29] = new Habitacion(315,3,false);
         initComponents();
+        llenarLabels();
+    }
+    
+    private void llenarLabels(){
+        int sencilla=0,doble=0,triple=0;
+        for (int i = 0; i < this.disponibles.length; i++) {
+            if(this.disponibles[i].tipo == 1){
+                sencilla++;
+            }else if(this.disponibles[i].tipo == 2){
+                doble++;
+            }else{
+                triple++;
+            }
+        }
+        this.jLabelDoble1.setText(doble + "");
+        this.jLabelSencilla1.setText(sencilla + "");
+        this.jLabelTriple1.setText(triple + "");
     }
 
     /**
@@ -27,21 +76,74 @@ public class Total extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabelSencilla = new javax.swing.JLabel();
+        jLabelDoble = new javax.swing.JLabel();
+        jButtonRegresar = new javax.swing.JButton();
+        jLabelTriple = new javax.swing.JLabel();
+        jLabelSencilla1 = new javax.swing.JLabel();
+        jLabelDoble1 = new javax.swing.JLabel();
+        jLabelTriple1 = new javax.swing.JLabel();
+        jLabelFondo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelSencilla.setFont(new java.awt.Font("Calisto MT", 1, 26)); // NOI18N
+        jLabelSencilla.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelSencilla.setText("Sencilla:");
+        jPanel1.add(jLabelSencilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, -1, -1));
+
+        jLabelDoble.setFont(new java.awt.Font("Calisto MT", 1, 26)); // NOI18N
+        jLabelDoble.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelDoble.setText("Doble:");
+        jPanel1.add(jLabelDoble, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, -1, -1));
+
+        jButtonRegresar.setFont(new java.awt.Font("Calisto MT", 1, 18)); // NOI18N
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+
+        jLabelTriple.setFont(new java.awt.Font("Calisto MT", 1, 26)); // NOI18N
+        jLabelTriple.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTriple.setText("Triple:");
+        jPanel1.add(jLabelTriple, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
+
+        jLabelSencilla1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(jLabelSencilla1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 250, 20));
+
+        jLabelDoble1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(jLabelDoble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, 280, 30));
+
+        jLabelTriple1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel1.add(jLabelTriple1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 290, 30));
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/plantas-acuaticas-de-aguas-profundas.jpg"))); // NOI18N
+        jPanel1.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 290));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +181,14 @@ public class Total extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JLabel jLabelDoble;
+    private javax.swing.JLabel jLabelDoble1;
+    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JLabel jLabelSencilla;
+    private javax.swing.JLabel jLabelSencilla1;
+    private javax.swing.JLabel jLabelTriple;
+    private javax.swing.JLabel jLabelTriple1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
