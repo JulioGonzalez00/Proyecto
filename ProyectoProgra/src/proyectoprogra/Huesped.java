@@ -5,15 +5,24 @@
  */
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+
 /**
  *
  * @author Aby
  */
 public class Huesped extends javax.swing.JFrame {
 
+    MySqlConn conn;
     /**
      * Creates new form Huesped
      */
+    public Huesped(MySqlConn conn){
+        this.conn = conn;
+        initComponents();
+    }
     public Huesped() {
         initComponents();
     }
@@ -27,22 +36,93 @@ public class Huesped extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jButtonRegresar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaResultado = new javax.swing.JTextArea();
+        jLabelFondo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButtonRegresar.setFont(new java.awt.Font("Calisto MT", 1, 18)); // NOI18N
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 120, 40));
+
+        jLabel2.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombre:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+
+        jTextFieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNombreKeyPressed(evt);
+            }
+        });
+        jPanel1.add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 310, -1));
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextAreaResultado.setColumns(20);
+        jTextAreaResultado.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaResultado);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 460, 170));
+
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/purple-and-blue-hydrangea-flowers-wallpaper-preview.jpg"))); // NOI18N
+        jPanel1.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextFieldNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            int hab;
+            String query;
+            hab = Integer.parseInt(this.jTextFieldNombre.getText().trim());
+            query = "SELECT * FROM habitaciones WHERE habitaciones.habitacion = '" + hab + "'";
+            this.conn.Consult(query);
+            try{
+                String nombre = this.conn.rs.getString(1);
+                int piso;
+                this.jTextAreaResultado.append(nombre + "\n");
+                nombre = this.conn.rs.getString(2);
+                this.jTextAreaResultado.append("Habitacion " + nombre + "\n");
+                piso = Integer.parseInt(this.conn.rs.getString(2));
+                 this.jTextAreaResultado.append("Piso " + (piso/100) + "\n");
+            }catch(SQLException ex){
+                System.out.println("Habitacion no ocupada");
+            }
+        }
+    }//GEN-LAST:event_jTextFieldNombreKeyPressed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+                           
     /**
      * @param args the command line arguments
      */
@@ -79,5 +159,12 @@ public class Huesped extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaResultado;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

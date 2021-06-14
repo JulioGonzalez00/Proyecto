@@ -27,21 +27,68 @@ public class Costos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabelSencilla = new javax.swing.JLabel();
+        jLabelDoble = new javax.swing.JLabel();
+        jLabelTriple = new javax.swing.JLabel();
+        jButtonRegresar = new javax.swing.JButton();
+        jLabelFondo = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelSencilla.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelSencilla.setFont(new java.awt.Font("Calisto MT", 1, 36)); // NOI18N
+        jLabelSencilla.setForeground(new java.awt.Color(102, 0, 102));
+        jLabelSencilla.setText("Habitacion Sencilla: $ 600.00 por noche");
+        jPanel1.add(jLabelSencilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 660, 60));
+
+        jLabelDoble.setFont(new java.awt.Font("Calisto MT", 1, 36)); // NOI18N
+        jLabelDoble.setForeground(new java.awt.Color(102, 0, 102));
+        jLabelDoble.setText("Habitacion Doble: $ 700.00 por noche");
+        jLabelDoble.setToolTipText("");
+        jPanel1.add(jLabelDoble, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 640, -1));
+
+        jLabelTriple.setFont(new java.awt.Font("Calisto MT", 1, 36)); // NOI18N
+        jLabelTriple.setForeground(new java.awt.Color(102, 0, 102));
+        jLabelTriple.setText("Habitacion Triple: $ 800.00 por noche");
+        jPanel1.add(jLabelTriple, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+
+        jButtonRegresar.setBackground(new java.awt.Color(168, 114, 221));
+        jButtonRegresar.setFont(new java.awt.Font("Calisto MT", 1, 18)); // NOI18N
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 140, 50));
+
+        jLabelFondo.setFont(new java.awt.Font("Californian FB", 0, 36)); // NOI18N
+        jLabelFondo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Pink-sakura-bloom-spring-twigs_1920x1200.jpg"))); // NOI18N
+        jLabelFondo.setText("Habitacion Sencilla: $ 600.00 por noche");
+        jPanel1.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +126,11 @@ public class Costos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JLabel jLabelDoble;
+    private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JLabel jLabelSencilla;
+    private javax.swing.JLabel jLabelTriple;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
