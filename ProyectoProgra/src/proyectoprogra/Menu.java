@@ -8,13 +8,7 @@ package proyectoprogra;
 import controlMySql.MySqlConn;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 /**
@@ -28,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Prueba
      * @param conn
+     * @param sonido
      */
     public Menu(MySqlConn conn, Clip sonido) {
         this.conn = conn;
@@ -124,6 +119,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuAdmin.setText("Administracion");
 
         jMenuItemAltas2.setText("Registrar Usuario");
+        jMenuItemAltas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAltas2ActionPerformed(evt);
+            }
+        });
         jMenuAdmin.add(jMenuItemAltas2);
 
         jMenuConsultas.setText("Consultas");
@@ -382,7 +382,83 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItemCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCostosActionPerformed
         // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Costos altas = new Costos();
+        altas.setVisible(true);
+        altas.setLocationRelativeTo(this);
+        altas.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                        sonido.start();
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });  
     }//GEN-LAST:event_jMenuItemCostosActionPerformed
+
+    private void jMenuItemAltas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAltas2ActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Login2 altas = new Login2();
+        altas.setVisible(true);
+        altas.setLocationRelativeTo(this);
+        altas.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                        sonido.start();
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });                                              
+    }//GEN-LAST:event_jMenuItemAltas2ActionPerformed
 
     /**
      * @param args the command line arguments
