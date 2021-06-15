@@ -34,9 +34,10 @@ public class Ingreso extends javax.swing.JFrame {
         String query;
         int cuenta = 0;
         query = "SELECT * FROM habitaciones WHERE habitaciones.habitacion = '1'";
+        this.conn.Consult(query);
         try {
             cuenta = Integer.parseInt(this.conn.rs.getString(7));
-            this.jTextFieldIngresos.setText("Ingresos totales: " + cuenta);
+            this.jLabel3.setText("Ingresos totales: " + cuenta);
         } catch (SQLException ex) {
             System.out.println("Error al abrir SQL");
         }
@@ -53,7 +54,6 @@ public class Ingreso extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldIngresos = new javax.swing.JTextField();
         jButtonRegresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -66,7 +66,6 @@ public class Ingreso extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingresos");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
-        jPanel1.add(jTextFieldIngresos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 300, -1));
 
         jButtonRegresar.setFont(new java.awt.Font("Calisto MT", 1, 18)); // NOI18N
         jButtonRegresar.setText("Regresar");
@@ -78,8 +77,9 @@ public class Ingreso extends javax.swing.JFrame {
         jPanel1.add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 110, 40));
 
         jLabel3.setFont(new java.awt.Font("Calisto MT", 1, 24)); // NOI18N
-        jLabel3.setText("Ingrese datos:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Cuenta del Hotel");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/182948kay (1).jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 380));
@@ -144,6 +144,5 @@ public class Ingreso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextFieldIngresos;
     // End of variables declaration//GEN-END:variables
 }

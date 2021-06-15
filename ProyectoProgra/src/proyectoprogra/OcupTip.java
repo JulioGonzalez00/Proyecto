@@ -5,25 +5,27 @@
  */
 package proyectoprogra;
 
-import java.awt.Color;
+import controlMySql.MySqlConn;
+import java.sql.SQLException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
- * @author Aby
+ * @author Julio
  */
-public class Total extends javax.swing.JFrame {
+public class OcupTip extends javax.swing.JFrame {
 
+    MySqlConn conn;
     Habitacion disponibles[];
     /**
-     * Creates new form Total
+     * Creates new form OcupTip
+     * @param conn
      */
-    public Total() {
+    public OcupTip(MySqlConn conn,int tipo) {
+        this.conn = conn;
         this.disponibles = new Habitacion[30];
         this.disponibles[0] = new Habitacion(201,1,false);
         this.disponibles[1] = new Habitacion(202,1,false);
@@ -56,40 +58,50 @@ public class Total extends javax.swing.JFrame {
         this.disponibles[28] = new Habitacion(314,3,false);
         this.disponibles[29] = new Habitacion(315,3,false);
         initComponents();
-        llenarLabels();
+        revisahab();
+        creaGraficas(tipo);
     }
-    
-    private void llenarLabels(){
-        int sencilla=0,doble=0,triple=0;
-        for (int i = 0; i < this.disponibles.length; i++) {
-            if(this.disponibles[i].tipo == 1){
-                sencilla++;
-            }else if(this.disponibles[i].tipo == 2){
-                doble++;
-            }else{
-                triple++;
+    public OcupTip() {
+        initComponents();
+    }
+
+    public void creaGraficas(int tipo){
+        int lib = 0;
+        int ocup = 0;
+        for (int i = 0; i < disponibles.length; i++) {
+            if(this.disponibles[i].tipo == tipo && this.disponibles[i].libre == true){
+                lib++;
+            }else if(this.disponibles[i].tipo == tipo){
+                ocup++;
             }
         }
-        // Fuente de Datos
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(sencilla, "Sencilla", "Habitaciones");
-        dataset.setValue(doble, "Doble", "Habitaciones");
-        dataset.setValue(triple, "Triple", "Habitaciones");
-        // Creando el Grafico
-        JFreeChart chart = ChartFactory.createBarChart3D
-        ("Tipos de Habitaciones","Tipo", "Cantidad", 
-        dataset, PlotOrientation.VERTICAL, true,true, false);
-        chart.setBackgroundPaint(Color.cyan);
-        chart.getTitle().setPaint(Color.black); 
-        CategoryPlot p = chart.getCategoryPlot(); 
-        p.setRangeGridlinePaint(Color.red); 
-        // Mostrar Grafico
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Libre", (lib*100)/this.disponibles.length);
+        data.setValue("Ocupado", (ocup*100)/this.disponibles.length);
+
+        JFreeChart chart = ChartFactory.createPieChart(
+         "Porcentaje de ocupacion de habitaciones tipo " + tipo + ".", data);
+
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setBounds(150,4,300,300);
+        chartPanel.setBounds(200,25,350,350);
         chartPanel.setVisible(true);
         this.jPanel1.add(chartPanel);
     }
+    private void revisahab() {
+        String query;
+        for (int i = 0; i < 30; i++) {
+            query = "select * from habitaciones where habitacion = " + "'" + this.disponibles[i].numero + "'";
+            try {
+                this.conn.Consult(query);
+                if (!this.conn.rs.getString(1).isEmpty()) {
 
+                }
+            } catch (SQLException ex) {
+                this.disponibles[i].libre = true;
+            }
+        }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,45 +112,42 @@ public class Total extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButtonRegresar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(508, 288));
-        setMinimumSize(new java.awt.Dimension(508, 288));
-        setResizable(false);
+        setMaximumSize(new java.awt.Dimension(627, 409));
+        setMinimumSize(new java.awt.Dimension(627, 409));
 
         jPanel1.setLayout(null);
 
-        jButtonRegresar.setFont(new java.awt.Font("Calisto MT", 1, 18)); // NOI18N
-        jButtonRegresar.setText("Regresar");
-        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegresarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonRegresar);
-        jButtonRegresar.setBounds(20, 271, 120, 40);
+        jPanel1.add(jButton1);
+        jButton1.setBounds(20, 333, 160, 60);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButtonRegresarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,26 +166,26 @@ public class Total extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupTip.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupTip.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupTip.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Total.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OcupTip.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Total().setVisible(true);
+                new OcupTip().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

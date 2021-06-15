@@ -99,10 +99,10 @@ public class Huesped extends javax.swing.JFrame {
     private void jTextFieldNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNombreKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            int hab;
+            String nom;
             String query;
-            hab = Integer.parseInt(this.jTextFieldNombre.getText().trim());
-            query = "SELECT * FROM habitaciones WHERE habitaciones.habitacion = '" + hab + "'";
+            nom = this.jTextFieldNombre.getText().trim();
+            query = "SELECT * FROM habitaciones WHERE habitaciones.nom = '" + nom + "'";
             this.conn.Consult(query);
             try{
                 String nombre = this.conn.rs.getString(1);
@@ -113,7 +113,7 @@ public class Huesped extends javax.swing.JFrame {
                 piso = Integer.parseInt(this.conn.rs.getString(2));
                  this.jTextAreaResultado.append("Piso " + (piso/100) + "\n");
             }catch(SQLException ex){
-                System.out.println("Habitacion no ocupada");
+                this.jTextAreaResultado.setText("Habitacion no ocupada");
             }
         }
     }//GEN-LAST:event_jTextFieldNombreKeyPressed
