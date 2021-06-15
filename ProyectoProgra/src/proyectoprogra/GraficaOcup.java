@@ -78,8 +78,8 @@ public class GraficaOcup extends javax.swing.JFrame {
             }
         }
         DefaultPieDataset data = new DefaultPieDataset();
-        data.setValue("Libre", (lib*100)/this.disponibles.length);
-        data.setValue("Ocupado", (ocup*100)/this.disponibles.length);
+        data.setValue("Libre", (lib));
+        data.setValue("Ocupado", (ocup));
         
         JFreeChart chart = ChartFactory.createPieChart(
          "Porcentaje de ocupacion del hotel.", 
