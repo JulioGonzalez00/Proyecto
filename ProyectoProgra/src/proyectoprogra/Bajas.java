@@ -416,6 +416,8 @@ public class Bajas extends javax.swing.JFrame {
             }
         query = "SELECT * FROM habitaciones WHERE habitaciones.habitacion = '1'";
         this.conn.Consult(query);
+        query = "UPDATE `tothab` SET `libre` = '1' WHERE `tothab`.`num` = "+ hab;
+        this.conn.Update(query);
             try {
                 cuenta = Integer.parseInt(this.conn.rs.getString(7));
             } catch (SQLException ex) {

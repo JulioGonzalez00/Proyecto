@@ -201,9 +201,19 @@ public class Menu extends javax.swing.JFrame {
         jMenuConsultas.add(jMenuItemTot);
 
         jMenuItemLista.setText("Lista de Huespedes");
+        jMenuItemLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListaActionPerformed(evt);
+            }
+        });
         jMenuConsultas.add(jMenuItemLista);
 
         jMenuItemNumBus.setText("Buscar Habitacion");
+        jMenuItemNumBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNumBusActionPerformed(evt);
+            }
+        });
         jMenuConsultas.add(jMenuItemNumBus);
 
         jMenuItemNomBus.setText("Buscar Huesped");
@@ -564,7 +574,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         final JFrame aux = this;
         this.setVisible(false);
-        Total tot = new Total();
+        Total tot = new Total(this.conn);
         tot.setVisible(true);
         tot.setLocationRelativeTo(this);
         tot.addWindowListener(new WindowListener() {
@@ -793,6 +803,84 @@ public class Menu extends javax.swing.JFrame {
                     }
                 });
     }//GEN-LAST:event_jMenuItemPiso2ActionPerformed
+
+    private void jMenuItemNumBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNumBusActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        BuscarHab BH = new BuscarHab(this.conn);
+        BH.setVisible(true);
+        BH.setLocationRelativeTo(this);
+        BH.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemNumBusActionPerformed
+
+    private void jMenuItemListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListaActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Lista lista = new Lista(this.conn);
+        lista.setVisible(true);
+        lista.setLocationRelativeTo(this);
+        lista.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemListaActionPerformed
 
     /**
      * @param args the command line arguments

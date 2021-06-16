@@ -5,15 +5,27 @@
  */
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+
 /**
  *
  * @author Julio
  */
 public class BuscarHab extends javax.swing.JFrame {
 
+    MySqlConn conn;
     /**
      * Creates new form BuscarHab
+     * @param conn
      */
+    public BuscarHab(MySqlConn conn){
+        
+        this.conn = conn;
+        
+        initComponents();
+    }
     public BuscarHab() {
         initComponents();
     }
@@ -36,21 +48,33 @@ public class BuscarHab extends javax.swing.JFrame {
         jButtonBuscar = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 110, 50));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setFocusable(false);
         jPanelPizarron.add(jTextArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 320, -1));
 
         jLabelTitulo.setFont(new java.awt.Font("Sitka Small", 1, 18)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Buscar por habitacion");
         jPanelPizarron.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
         jPanelPizarron.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 180, -1));
 
         jLabelNum.setFont(new java.awt.Font("Sitka Small", 1, 11)); // NOI18N
@@ -59,6 +83,11 @@ public class BuscarHab extends javax.swing.JFrame {
         jPanelPizarron.add(jLabelNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 130, 50));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/noche.jpg"))); // NOI18N
@@ -77,6 +106,32 @@ public class BuscarHab extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        String query = "select * from habitaciones where habitaciones.habitacion = " + "'" + this.jTextField1.getText().trim() + "'";
+        this.conn.Consult(query);
+        try{
+            String nom = this.conn.rs.getString(1);
+            String hab = this.conn.rs.getString(2);
+            this.jTextArea1.setText("En la habitacion " +  hab
+                    + " se ecuentra el huesped\n" + nom);
+        }catch(SQLException ex){
+            this.jTextArea1.setText("Habitacion no ocupada.");
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.jButtonBuscarActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments

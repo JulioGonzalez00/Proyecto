@@ -12,9 +12,9 @@ package proyectoprogra;
 public class Habitacion {
     int numero;
     int tipo;
-    boolean libre;
+    int libre;
 
-    public Habitacion(int numero, int tipo, boolean libre) {
+    public Habitacion(int numero, int tipo, int libre) {
         this.numero = numero;
         this.tipo = tipo;
         this.libre = libre;

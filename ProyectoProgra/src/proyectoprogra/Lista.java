@@ -5,19 +5,53 @@
  */
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+import java.sql.SQLException;
+
 /**
  *
  * @author Julio
  */
 public class Lista extends javax.swing.JFrame {
 
+    MySqlConn conn;
     /**
      * Creates new form Lista
+     * @param conn
      */
+    public Lista(MySqlConn conn){
+        this.conn = conn;
+        initComponents();
+        revisaHab();
+    }
     public Lista() {
         initComponents();
     }
 
+    void revisaHab(){
+        String query;
+        String nom;
+        for (int i = 201; i < 216; i++) {
+            query = "select * from habitaciones where habitaciones.habitacion = " + "'" + i + "'";
+            this.conn.Consult(query);
+            try{
+                nom = this.conn.rs.getString(1);
+                this.jTextAreaResultado.append(nom + "\n");
+            }catch(SQLException ex){
+                
+            }
+        }
+        for (int i = 301; i < 316; i++) {
+            query = "select * from habitaciones where habitaciones.habitacion = " + "'" + i + "'";
+            this.conn.Consult(query);
+            try{
+                nom = this.conn.rs.getString(1);
+                this.jTextAreaResultado.append(nom + "\n");
+            }catch(SQLException ex){
+                
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,11 +68,16 @@ public class Lista extends javax.swing.JFrame {
         jTextAreaResultado = new javax.swing.JTextArea();
         jLabelFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelPizarron.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 293, 90, 40));
 
         jLabelTitulo.setFont(new java.awt.Font("Sitka Small", 1, 24)); // NOI18N
@@ -46,6 +85,7 @@ public class Lista extends javax.swing.JFrame {
         jLabelTitulo.setText("Huespedes");
         jPanelPizarron.add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, 30));
 
+        jTextAreaResultado.setEditable(false);
         jTextAreaResultado.setColumns(20);
         jTextAreaResultado.setRows(5);
         jScrollPane1.setViewportView(jTextAreaResultado);
@@ -68,6 +108,11 @@ public class Lista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments

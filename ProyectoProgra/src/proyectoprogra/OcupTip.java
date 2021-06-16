@@ -26,37 +26,6 @@ public class OcupTip extends javax.swing.JFrame {
      */
     public OcupTip(MySqlConn conn,int tipo) {
         this.conn = conn;
-        this.disponibles = new Habitacion[30];
-        this.disponibles[0] = new Habitacion(201,1,false);
-        this.disponibles[1] = new Habitacion(202,1,false);
-        this.disponibles[2] = new Habitacion(203,1,false);
-        this.disponibles[3] = new Habitacion(204,1,false);
-        this.disponibles[4] = new Habitacion(205,1,false);
-        this.disponibles[5] = new Habitacion(206,1,false);
-        this.disponibles[6] = new Habitacion(207,2,false);
-        this.disponibles[7] = new Habitacion(208,2,false);
-        this.disponibles[8] = new Habitacion(209,2,false);
-        this.disponibles[9] = new Habitacion(210,2,false);
-        this.disponibles[10] = new Habitacion(211,2,false);
-        this.disponibles[11] = new Habitacion(212,3,false);
-        this.disponibles[12] = new Habitacion(213,3,false);
-        this.disponibles[13] = new Habitacion(214,3,false);
-        this.disponibles[14] = new Habitacion(215,3,false);
-        this.disponibles[15] = new Habitacion(301,1,false);
-        this.disponibles[16] = new Habitacion(302,1,false);
-        this.disponibles[17] = new Habitacion(303,1,false);
-        this.disponibles[18] = new Habitacion(304,1,false);
-        this.disponibles[19] = new Habitacion(305,2,false);
-        this.disponibles[20] = new Habitacion(306,2,false);
-        this.disponibles[21] = new Habitacion(307,2,false);
-        this.disponibles[22] = new Habitacion(308,2,false);
-        this.disponibles[23] = new Habitacion(309,2,false);
-        this.disponibles[24] = new Habitacion(310,2,false);
-        this.disponibles[25] = new Habitacion(311,3,false);
-        this.disponibles[26] = new Habitacion(312,3,false);
-        this.disponibles[27] = new Habitacion(313,3,false);
-        this.disponibles[28] = new Habitacion(314,3,false);
-        this.disponibles[29] = new Habitacion(315,3,false);
         initComponents();
         revisahab();
         creaGraficas(tipo);
@@ -69,7 +38,7 @@ public class OcupTip extends javax.swing.JFrame {
         int lib = 0;
         int ocup = 0;
         for (int i = 0; i < disponibles.length; i++) {
-            if(this.disponibles[i].tipo == tipo && this.disponibles[i].libre == true){
+            if(this.disponibles[i].tipo == tipo && this.disponibles[i].libre == 1){
                 lib++;
             }else if(this.disponibles[i].tipo == tipo){
                 ocup++;
@@ -89,15 +58,33 @@ public class OcupTip extends javax.swing.JFrame {
     }
     private void revisahab() {
         String query;
-        for (int i = 0; i < 30; i++) {
-            query = "select * from habitaciones where habitacion = " + "'" + this.disponibles[i].numero + "'";
-            try {
+        int j = 0;
+        disponibles = new Habitacion[30];
+        int numero,tipo,libre;
+        for (int i = 201; i < 216; i++) {
+            query = "select * from tothab where num = " + "'" + i + "'";
+            try{
                 this.conn.Consult(query);
-                if (!this.conn.rs.getString(1).isEmpty()) {
-
-                }
-            } catch (SQLException ex) {
-                this.disponibles[i].libre = true;
+                numero =Integer.parseInt(this.conn.rs.getString(1));
+                tipo = Integer.parseInt(this.conn.rs.getString(2));
+                libre = Integer.parseInt(this.conn.rs.getString(3));
+                this.disponibles[j] = new Habitacion(numero,tipo,libre);
+                j++;
+            }catch(SQLException ex){
+                System.out.println("Error al abrir SQL");
+            }
+        }
+        for (int i = 301; i < 316; i++) {
+            query = "select * from tothab where num = " + "'" + i + "'";
+            try{
+                this.conn.Consult(query);
+                numero =Integer.parseInt(this.conn.rs.getString(1));
+                tipo = Integer.parseInt(this.conn.rs.getString(2));
+                libre = Integer.parseInt(this.conn.rs.getString(3));
+                this.disponibles[j] = new Habitacion(numero,tipo,libre);
+                j++;
+            }catch(SQLException ex){
+                System.out.println("Error al abrir SQL");
             }
         }
 
