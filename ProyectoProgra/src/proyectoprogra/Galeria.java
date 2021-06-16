@@ -35,7 +35,6 @@ public class Galeria extends javax.swing.JFrame {
             imagenes = new ImageIcon[6];
             for (int i = 0; i < imagenes.length; i++) {
                 imagen = "/ImagenesGaleria/hotel"+(i+1)+".jpg";
-                //System.out.println(imagen);
                 imagenes[i] = new ImageIcon(getClass().getResource(imagen));
             }
             sonido = AudioSystem.getClip();
