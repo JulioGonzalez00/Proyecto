@@ -8,6 +8,8 @@ package proyectoprogra;
 import controlMySql.MySqlConn;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -36,13 +38,15 @@ public class Altas extends javax.swing.JFrame {
         String query;
         int j = 0;
         disponibles = new Habitacion[30];
+        int numero,tipo,libre;
         for (int i = 201; i < 216; i++) {
             query = "select * from tothab where num = " + "'" + i + "'";
             try{
                 this.conn.Consult(query);
-                disponibles[j].numero = i;
-                disponibles[j].tipo = Integer.parseInt(this.conn.rs.getString(2));
-                disponibles[j].libre = Integer.parseInt(this.conn.rs.getString(3));
+                numero =Integer.parseInt(this.conn.rs.getString(1));
+                tipo = Integer.parseInt(this.conn.rs.getString(2));
+                libre = Integer.parseInt(this.conn.rs.getString(3));
+                this.disponibles[j] = new Habitacion(numero,tipo,libre);
                 j++;
             }catch(SQLException ex){
                 System.out.println("Error al abrir SQL");
@@ -52,9 +56,10 @@ public class Altas extends javax.swing.JFrame {
             query = "select * from tothab where num = " + "'" + i + "'";
             try{
                 this.conn.Consult(query);
-                disponibles[j].numero = i;
-                disponibles[j].tipo = Integer.parseInt(this.conn.rs.getString(2));
-                disponibles[j].libre = Integer.parseInt(this.conn.rs.getString(3));
+                numero =Integer.parseInt(this.conn.rs.getString(1));
+                tipo = Integer.parseInt(this.conn.rs.getString(2));
+                libre = Integer.parseInt(this.conn.rs.getString(3));
+                this.disponibles[j] = new Habitacion(numero,tipo,libre);
                 j++;
             }catch(SQLException ex){
                 System.out.println("Error al abrir SQL");
@@ -218,6 +223,9 @@ public class Altas extends javax.swing.JFrame {
             this.conn.Update(query);
             query = "UPDATE `tothab` SET `libre` = '0' WHERE `tothab`.`num` = "+ habitacion;
             this.conn.Update(query);
+            Ticket tic = new Ticket(this.conn,habitacion);
+            tic.setVisible(true);
+            tic.setLocationRelativeTo(null);
             this.dispose();
         }else{ 
             JOptionPane.showMessageDialog(this,"El numero de huespedes extra puede exceder solo en 2 al tipo de habitacion.");
