@@ -32,7 +32,7 @@ public class Galeria extends javax.swing.JFrame {
         try {
             pos = 0;
             String imagen;
-            imagenes = new ImageIcon[6];
+            imagenes = new ImageIcon[10];
             for (int i = 0; i < imagenes.length; i++) {
                 imagen = "/ImagenesGaleria/hotel"+(i+1)+".jpg";
                 imagenes[i] = new ImageIcon(getClass().getResource(imagen));
