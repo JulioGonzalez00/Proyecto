@@ -8,13 +8,7 @@ package proyectoprogra;
 import controlMySql.MySqlConn;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
-import java.io.IOException;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 
 /**
@@ -28,6 +22,7 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Prueba
      * @param conn
+     * @param sonido
      */
     public Menu(MySqlConn conn, Clip sonido) {
         this.conn = conn;
@@ -68,11 +63,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuHab = new javax.swing.JMenu();
         jMenuItemPiso1 = new javax.swing.JMenuItem();
         jMenuItemPiso2 = new javax.swing.JMenuItem();
+        jMenuItemTot = new javax.swing.JMenuItem();
         jMenuItemLista = new javax.swing.JMenuItem();
         jMenuItemNumBus = new javax.swing.JMenuItem();
         jMenuItemNomBus = new javax.swing.JMenuItem();
         jMenuItemCostos = new javax.swing.JMenuItem();
-        jMenuItemTot = new javax.swing.JMenuItem();
         jMenuItemIngresos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -124,6 +119,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuAdmin.setText("Administracion");
 
         jMenuItemAltas2.setText("Registrar Usuario");
+        jMenuItemAltas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAltas2ActionPerformed(evt);
+            }
+        });
         jMenuAdmin.add(jMenuItemAltas2);
 
         jMenuConsultas.setText("Consultas");
@@ -147,6 +147,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuOcup.setText("Ocupacion por tipo");
 
         jMenuItemSencilla.setText("Sencilla");
+        jMenuItemSencilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSencillaActionPerformed(evt);
+            }
+        });
         jMenuOcup.add(jMenuItemSencilla);
 
         jMenuItemDoble.setText("Doble");
@@ -177,6 +182,14 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuConsultas.add(jMenuHab);
 
+        jMenuItemTot.setText("Total de habitaciones");
+        jMenuItemTot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTotActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItemTot);
+
         jMenuItemLista.setText("Lista de Huespedes");
         jMenuConsultas.add(jMenuItemLista);
 
@@ -184,6 +197,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuConsultas.add(jMenuItemNumBus);
 
         jMenuItemNomBus.setText("Buscar Huesped");
+        jMenuItemNomBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNomBusActionPerformed(evt);
+            }
+        });
         jMenuConsultas.add(jMenuItemNomBus);
 
         jMenuItemCostos.setText("Costos de habitacion");
@@ -194,10 +212,12 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuItemCostos);
 
-        jMenuItemTot.setText("Total de habitaciones");
-        jMenuConsultas.add(jMenuItemTot);
-
         jMenuItemIngresos.setText("Ingresos");
+        jMenuItemIngresos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemIngresosActionPerformed(evt);
+            }
+        });
         jMenuConsultas.add(jMenuItemIngresos);
 
         jMenuAdmin.add(jMenuConsultas);
@@ -374,15 +394,317 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItemDobleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDobleActionPerformed
         // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        OcupTip ocup = new OcupTip(this.conn,2);
+        ocup.setVisible(true);
+        ocup.setLocationRelativeTo(this);
+        ocup.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
     }//GEN-LAST:event_jMenuItemDobleActionPerformed
 
     private void jMenuItemTripleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTripleActionPerformed
         // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        OcupTip ocup = new OcupTip(this.conn,3);
+        ocup.setVisible(true);
+        ocup.setLocationRelativeTo(this);
+        ocup.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
     }//GEN-LAST:event_jMenuItemTripleActionPerformed
 
     private void jMenuItemCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCostosActionPerformed
         // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Costos altas = new Costos();
+        altas.setVisible(true);
+        altas.setLocationRelativeTo(this);
+        altas.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                        sonido.start();
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });  
     }//GEN-LAST:event_jMenuItemCostosActionPerformed
+
+    private void jMenuItemAltas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAltas2ActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Login2 altas = new Login2();
+        altas.setVisible(true);
+        altas.setLocationRelativeTo(this);
+        altas.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                        sonido.start();
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });                                              
+    }//GEN-LAST:event_jMenuItemAltas2ActionPerformed
+
+    private void jMenuItemTotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTotActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Total tot = new Total();
+        tot.setVisible(true);
+        tot.setLocationRelativeTo(this);
+        tot.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                }); 
+    }//GEN-LAST:event_jMenuItemTotActionPerformed
+
+    private void jMenuItemIngresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIngresosActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Ingreso ing = new Ingreso(this.conn);
+        ing.setVisible(true);
+        ing.setLocationRelativeTo(this);
+        ing.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemIngresosActionPerformed
+
+    private void jMenuItemNomBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNomBusActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Huesped hues = new Huesped(this.conn);
+        hues.setVisible(true);
+        hues.setLocationRelativeTo(this);
+        hues.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemNomBusActionPerformed
+
+    private void jMenuItemSencillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSencillaActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        OcupTip ocup = new OcupTip(this.conn,1);
+        ocup.setVisible(true);
+        ocup.setLocationRelativeTo(this);
+        ocup.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemSencillaActionPerformed
 
     /**
      * @param args the command line arguments

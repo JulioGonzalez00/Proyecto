@@ -5,9 +5,26 @@
  */
 package proyectoprogra;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfWriter;
 import controlMySql.MySqlConn;
 import java.awt.event.KeyEvent;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,13 +37,15 @@ public class Bajas extends javax.swing.JFrame {
 
     MySqlConn conn;
     int tot;
+    boolean ext[];
     /**
      * Creates new form Bajas
      * @param conn
      */
     public Bajas(MySqlConn conn) {
         this.conn = conn;
-        tot = 0;
+        this.tot = 0;
+        this.ext = new boolean[5];
         initComponents();
     }
     public Bajas() {
@@ -234,12 +253,150 @@ public class Bajas extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.jCheckBoxNiñera.isSelected()){
             this.tot += 200;
+            this.ext[0] = true;
         }else{
             this.tot -= 200;
+            this.ext[0] = false;
         }
         this.jLabelCuenta2.setText(""+tot);
     }//GEN-LAST:event_jCheckBoxNiñeraActionPerformed
 
+    void recibo(){
+        String query = "SELECT * FROM habitaciones WHERE habitaciones.habitacion = '"
+                + "" + Integer.parseInt(this.jTextFieldNum.getText().trim())  + "'";
+        try {
+            String nom;
+            nom = this.conn.rs.getString(1);
+            Font fuente1, fuente2, fuente3, fuente4, fuente5;
+            fuente1 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 22);
+            fuente1.setColor(new BaseColor(112, 8, 8));
+            
+            fuente2 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 22);
+            fuente2.setColor(new BaseColor(112, 8, 8));  
+            
+            fuente3 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 23);
+            fuente3.setColor(BaseColor.BLACK);
+            
+            fuente4 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 20);
+            fuente4.setColor(BaseColor.DARK_GRAY);
+            
+            fuente5 = FontFactory.getFont(FontFactory.TIMES_ROMAN, 18);
+            fuente5.setColor(BaseColor.GRAY);
+            
+            Rectangle tam = new Rectangle(PageSize.LETTER);
+            tam.setBackgroundColor(new BaseColor(255, 255, 190));
+            Document document = new Document(tam);
+            
+            PdfWriter.getInstance(document, new FileOutputStream("Recibo.pdf"));
+            document.open();
+            Image logo = Image.getInstance("src/Imagenes/12RosasPequeño.png");
+            logo.scaleAbsolute(220f, 170f);
+            logo.setAlignment(Element.ALIGN_CENTER);
+            
+            document.add(logo);
+            String nombre = "\nHuesped: " + nom;
+            String ciudad = "Ciudad de Origen: " + this.conn.rs.getString(3) + "\n";
+            String fechaI = "Fecha de ingreso: " + this.conn.rs.getString(6) + "\n";
+            Date ap;
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+            ap = formato.parse(this.conn.rs.getString(6));
+            Calendar aux = Calendar.getInstance();
+            aux.setTime(ap);
+            aux.add(Calendar.DATE,Integer.parseInt(this.conn.rs.getString(5)));
+            ap = aux.getTime();
+            String fechaS = "Fecha de salida: " + formato.format(ap) + "" +"\n";
+            String num = "Habitacion: " + this.conn.rs.getString(2) + "\n";
+            int costos = 0;
+            switch(this.conn.rs.getString(4)){
+                    case "1":
+                        costos += 600;
+                        break;
+                    case "2":
+                        costos += 700;
+                        break;
+                    case "3":
+                        costos += 800;
+                        break;
+                }
+            String costo = "Costo por noche: " + costos + "\n";
+            String dias = "Dias de hospedaje: " + this.conn.rs.getString(5) +" \n";
+            String total = "Total sin cargos extra: " + (Integer.parseInt(this.conn.rs.getString(5)) * costos) + "\n";
+            String totalT = "Total a pagar: " + tot + "\n";
+            String cargos = "Cargos extras:\n";
+            String mensaje = "Hotel 12 Rosas \n 12 razones para ser feliz. ";
+            String lugar = "\nDireccion, Fecha de hoy\n";
+            
+            Paragraph paragraph;
+            //Datos del hotel
+            paragraph = new Paragraph(mensaje, fuente1);
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+            //Lugar y fecha
+            paragraph = new Paragraph(lugar, fuente4);
+            paragraph.setAlignment(Element.ALIGN_RIGHT);
+            document.add(paragraph); 
+            //Nombre
+            paragraph = new Paragraph(nombre, fuente3);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            //Contenido
+            paragraph = new Paragraph(ciudad, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            paragraph = new Paragraph(fechaI, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            paragraph = new Paragraph(fechaS, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            paragraph = new Paragraph(num, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            paragraph = new Paragraph(costo, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            paragraph = new Paragraph(dias, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            paragraph = new Paragraph(total, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            paragraph = new Paragraph(totalT, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            //Cargos Extras
+            if(this.ext[0] == true){
+                cargos += "Servicio de niñera.\n";
+            }
+            if(this.ext[1] == true){
+                cargos += "Servicio a la habitacion.\n";
+            }
+            if(this.ext[2] == true){
+                cargos += "Servicio de tintoreria.\n";
+            }
+            if(this.ext[3] == true){
+                cargos += "Servicio de SPA.\n";
+            }
+            if(this.ext[4] == true){
+                cargos += "Servicio de bar.\n";
+            }
+            paragraph = new Paragraph(cargos, fuente5);
+            paragraph.setAlignment(Element.ALIGN_LEFT);
+            document.add(paragraph);
+            //Despedida
+            String dir = "Un gusto tenerlo con nosotros";
+            paragraph = new Paragraph(dir, fuente4);
+            paragraph.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragraph);
+            
+            document.close();
+            JOptionPane.showMessageDialog(this,"Recibo creado.");
+        } catch (DocumentException | IOException | SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(Bajas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void jButtonBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaActionPerformed
         // TODO add your handling code here:
         String hab = this.jTextFieldNum.getText().trim();
@@ -248,12 +405,11 @@ public class Bajas extends javax.swing.JFrame {
         if(hab.isEmpty()){
             JOptionPane.showMessageDialog(this,"Numero de Habitacion vacio");
         }else{
+            recibo();
             query = "DELETE FROM habitaciones WHERE habitaciones.habitacion = " + hab;
-            
             int j = this.conn.Update(query);
             if(j>0){
-                JOptionPane.showMessageDialog(this,"Baja realizada");
-                this.dispose();
+                JOptionPane.showMessageDialog(this,"Baja realizada");           
             }else{
                 JOptionPane.showMessageDialog(this,"La baja no se pudo realizar");
                 return;
@@ -268,15 +424,19 @@ public class Bajas extends javax.swing.JFrame {
         cuenta+=tot;
         query = "UPDATE `habitaciones` SET `totalOcup` = '"+ cuenta +"' WHERE `habitaciones`.`habitacion` = 1 ";
         this.conn.Update(query);
+        this.dispose();
         }
+        
     }//GEN-LAST:event_jButtonBajaActionPerformed
 
     private void jCheckBoxHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHabActionPerformed
         // TODO add your handling code here:
         if(this.jCheckBoxHab.isSelected()){
             this.tot += 300;
+            this.ext[1] = true;
         }else{
             this.tot -= 300;
+            this.ext[1] = false;
         }
         this.jLabelCuenta2.setText(""+tot);
     }//GEN-LAST:event_jCheckBoxHabActionPerformed
@@ -285,8 +445,10 @@ public class Bajas extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.jCheckBoxTint.isSelected()){
             this.tot += 100;
+            this.ext[2] = true;
         }else{
             this.tot -= 100;
+            this.ext[2] = false;
         }
         this.jLabelCuenta2.setText(""+tot);
     }//GEN-LAST:event_jCheckBoxTintActionPerformed
@@ -295,8 +457,10 @@ public class Bajas extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.jCheckBoxSPA.isSelected()){
             this.tot += 300;
+            this.ext[3] = true;
         }else{
             this.tot -= 300;
+            this.ext[3] = false;
         }
         this.jLabelCuenta2.setText(""+tot);
     }//GEN-LAST:event_jCheckBoxSPAActionPerformed
@@ -305,8 +469,10 @@ public class Bajas extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.jCheckBoxBar.isSelected()){
             this.tot += 250;
+            this.ext[4] = true;
         }else{
             this.tot -= 250;
+            this.ext[4] = false;
         }
         this.jLabelCuenta2.setText(""+tot);
     }//GEN-LAST:event_jCheckBoxBarActionPerformed
@@ -345,7 +511,6 @@ public class Bajas extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBaja;
     private javax.swing.JCheckBox jCheckBoxBar;

@@ -77,17 +77,14 @@ public class GraficaOcup extends javax.swing.JFrame {
                 ocup++;
             }
         }
-        // Fuente de Datos
         DefaultPieDataset data = new DefaultPieDataset();
         data.setValue("Libre", (lib*100)/this.disponibles.length);
         data.setValue("Ocupado", (ocup*100)/this.disponibles.length);
-
-        // Creando el Grafico
+        
         JFreeChart chart = ChartFactory.createPieChart(
          "Porcentaje de ocupacion del hotel.", 
          data);
- 
-        // Crear el Panel del Grafico con ChartPanel
+
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBounds(50,25,350,350);
         chartPanel.setVisible(true);
@@ -107,7 +104,6 @@ public class GraficaOcup extends javax.swing.JFrame {
                 this.disponibles[i].libre = true;
             }
         }
-
     }
 
     /**

@@ -40,8 +40,8 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
             sonido.open(AudioSystem.getAudioInputStream(new File("src/recursos/cancion.wav").getAbsoluteFile()));
             FloatControl gainControl = (FloatControl) sonido.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-20.0f);
-            sonido.start();
-            sonido.loop(Clip.LOOP_CONTINUOUSLY);
+            //sonido.start();
+            //sonido.loop(Clip.LOOP_CONTINUOUSLY);
         } catch (LineUnavailableException ex) {
             System.out.println("1");
         } catch (IOException ex) {
