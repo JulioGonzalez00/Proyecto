@@ -5,19 +5,98 @@
  */
 package proyectoprogra;
 
+import controlMySql.MySqlConn;
+import java.sql.SQLException;
+
 /**
  *
  * @author IZTROW
  */
 public class Piso1 extends javax.swing.JFrame {
 
+    Habitacion disponibles[];
+    MySqlConn conn;
     /**
      * Creates new form Piso1
+     * @param conn
+     * @param ps
      */
+    public Piso1(MySqlConn conn, int ps) {
+        this.conn = conn;
+        this.disponibles = new Habitacion[30];
+        this.disponibles[0] = new Habitacion(201, 1, false);
+        this.disponibles[1] = new Habitacion(202, 1, false);
+        this.disponibles[2] = new Habitacion(203, 1, false);
+        this.disponibles[3] = new Habitacion(204, 1, false);
+        this.disponibles[4] = new Habitacion(205, 1, false);
+        this.disponibles[5] = new Habitacion(206, 1, false);
+        this.disponibles[6] = new Habitacion(207, 2, false);
+        this.disponibles[7] = new Habitacion(208, 2, false);
+        this.disponibles[8] = new Habitacion(209, 2, false);
+        this.disponibles[9] = new Habitacion(210, 2, false);
+        this.disponibles[10] = new Habitacion(211, 2, false);
+        this.disponibles[11] = new Habitacion(212, 3, false);
+        this.disponibles[12] = new Habitacion(213, 3, false);
+        this.disponibles[13] = new Habitacion(214, 3, false);
+        this.disponibles[14] = new Habitacion(215, 3, false);
+        this.disponibles[15] = new Habitacion(301, 1, false);
+        this.disponibles[16] = new Habitacion(302, 1, false);
+        this.disponibles[17] = new Habitacion(303, 1, false);
+        this.disponibles[18] = new Habitacion(304, 1, false);
+        this.disponibles[19] = new Habitacion(305, 2, false);
+        this.disponibles[20] = new Habitacion(306, 2, false);
+        this.disponibles[21] = new Habitacion(307, 2, false);
+        this.disponibles[22] = new Habitacion(308, 2, false);
+        this.disponibles[23] = new Habitacion(309, 2, false);
+        this.disponibles[24] = new Habitacion(310, 2, false);
+        this.disponibles[25] = new Habitacion(311, 3, false);
+        this.disponibles[26] = new Habitacion(312, 3, false);
+        this.disponibles[27] = new Habitacion(313, 3, false);
+        this.disponibles[28] = new Habitacion(314, 3, false);
+        this.disponibles[29] = new Habitacion(315, 3, false);
+        initComponents();
+        revisaHab();
+        imprimeHab(ps);
+    }
     public Piso1() {
         initComponents();
     }
 
+    private void revisaHab() {
+        String query;
+        for (int i = 0; i < 30; i++) {
+            query = "select * from habitaciones where habitacion = " + "'" + this.disponibles[i].numero + "'";
+            try {
+                this.conn.Consult(query);
+                if (!this.conn.rs.getString(1).isEmpty()) {
+
+                }
+            } catch (SQLException ex) {
+                this.disponibles[i].libre = true;
+            }
+        }
+    }
+    void imprimeHab(int ps){
+        this.jTextAreaResultado.setText("");
+        this.jTextAreaResultado.append("Habitaciones libres del piso " + ps +  ":\nSencillas: ");
+        for (int i = 0; i < this.disponibles.length; i++) {
+            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 1){
+                this.jTextAreaResultado.append("[" + this.disponibles[i].numero + "] ");
+            }
+        }
+        this.jTextAreaResultado.append("\nDobles: ");
+        for (int i = 0; i < this.disponibles.length; i++) {
+            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 2){
+                this.jTextAreaResultado.append("[" + this.disponibles[i].numero + "] ");
+            }
+        }
+        this.jTextAreaResultado.append("\nTriples: ");
+        for (int i = 0; i < this.disponibles.length; i++) {
+            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 3){
+                this.jTextAreaResultado.append("[" + this.disponibles[i].numero + "] ");
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,9 +108,10 @@ public class Piso1 extends javax.swing.JFrame {
 
         jPanelPizarron = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldDisponibles = new javax.swing.JTextField();
         jLabelDisponibles = new javax.swing.JLabel();
         jButtonrRegresar = new javax.swing.JButton();
+        jScrollPaneResultado = new javax.swing.JScrollPane();
+        jTextAreaResultado = new javax.swing.JTextArea();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,22 +123,26 @@ public class Piso1 extends javax.swing.JFrame {
         jLabel2.setText("Habitaciones ");
         jPanelPizarron.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 370, 50));
 
-        jTextFieldDisponibles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDisponiblesActionPerformed(evt);
-            }
-        });
-        jPanelPizarron.add(jTextFieldDisponibles, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 330, 220));
-
         jLabelDisponibles.setFont(new java.awt.Font("Sitka Small", 1, 36)); // NOI18N
         jLabelDisponibles.setText("Disponibles");
         jPanelPizarron.add(jLabelDisponibles, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 320, 80));
 
         jButtonrRegresar.setText("REGRESAR");
+        jButtonrRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonrRegresarActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jButtonrRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 130, 50));
 
+        jTextAreaResultado.setColumns(20);
+        jTextAreaResultado.setRows(5);
+        jScrollPaneResultado.setViewportView(jTextAreaResultado);
+
+        jPanelPizarron.add(jScrollPaneResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 360, 220));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/47062107_539474499886397_2159788295511343104_n.jpg"))); // NOI18N
-        jPanelPizarron.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 480));
+        jPanelPizarron.add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, 0, 810, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,9 +158,10 @@ public class Piso1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDisponiblesActionPerformed
+    private void jButtonrRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonrRegresarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDisponiblesActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonrRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +204,7 @@ public class Piso1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDisponibles;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JPanel jPanelPizarron;
-    private javax.swing.JTextField jTextFieldDisponibles;
+    private javax.swing.JScrollPane jScrollPaneResultado;
+    private javax.swing.JTextArea jTextAreaResultado;
     // End of variables declaration//GEN-END:variables
 }

@@ -111,7 +111,7 @@ public class Huesped extends javax.swing.JFrame {
                 nombre = this.conn.rs.getString(2);
                 this.jTextAreaResultado.append("Habitacion " + nombre + "\n");
                 piso = Integer.parseInt(this.conn.rs.getString(2));
-                 this.jTextAreaResultado.append("Piso " + (piso/100) + "\n");
+                 this.jTextAreaResultado.append("Piso " + ((piso/100)-1) + "\n");
             }catch(SQLException ex){
                 this.jTextAreaResultado.setText("Habitacion no ocupada");
             }

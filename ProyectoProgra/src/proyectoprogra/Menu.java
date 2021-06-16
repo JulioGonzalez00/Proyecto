@@ -175,9 +175,19 @@ public class Menu extends javax.swing.JFrame {
         jMenuHab.setText("Habitaciones por piso");
 
         jMenuItemPiso1.setText("Piso 1");
+        jMenuItemPiso1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPiso1ActionPerformed(evt);
+            }
+        });
         jMenuHab.add(jMenuItemPiso1);
 
         jMenuItemPiso2.setText("Piso 2");
+        jMenuItemPiso2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPiso2ActionPerformed(evt);
+            }
+        });
         jMenuHab.add(jMenuItemPiso2);
 
         jMenuConsultas.add(jMenuHab);
@@ -705,6 +715,84 @@ public class Menu extends javax.swing.JFrame {
                     }
                 });
     }//GEN-LAST:event_jMenuItemSencillaActionPerformed
+
+    private void jMenuItemPiso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPiso1ActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Piso1 ti = new Piso1(this.conn,1);
+        ti.setVisible(true);
+        ti.setLocationRelativeTo(this);
+        ti.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemPiso1ActionPerformed
+
+    private void jMenuItemPiso2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPiso2ActionPerformed
+        // TODO add your handling code here:
+        final JFrame aux = this;
+        this.setVisible(false);
+        Piso1 ti = new Piso1(this.conn,2);
+        ti.setVisible(true);
+        ti.setLocationRelativeTo(this);
+        ti.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowClosed(WindowEvent we) {
+                        aux.setVisible(true);
+                    }
+
+                    @Override
+                    public void windowOpened(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowClosing(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowIconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeiconified(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowActivated(WindowEvent we) {
+                    }
+
+                    @Override
+                    public void windowDeactivated(WindowEvent we) {
+                    }
+                });
+    }//GEN-LAST:event_jMenuItemPiso2ActionPerformed
 
     /**
      * @param args the command line arguments

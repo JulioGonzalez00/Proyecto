@@ -5,6 +5,15 @@
  */
 package proyectoprogra;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 
 /**
@@ -15,19 +24,30 @@ public class Galeria extends javax.swing.JFrame {
 
     ImageIcon imagenes[];
     int pos;
+    Clip sonido;
     /**
      * Creates new form Galeria
      */
     public Galeria() {
-        pos = 0;
-        String imagen;
-        imagenes = new ImageIcon[6];
-        for (int i = 0; i < imagenes.length; i++) {
-            imagen = "/ImagenesGaleria/hotel"+(i+1)+".jpg";
-            //System.out.println(imagen);
-            imagenes[i] = new ImageIcon(getClass().getResource(imagen));
+        try {
+            pos = 0;
+            String imagen;
+            imagenes = new ImageIcon[6];
+            for (int i = 0; i < imagenes.length; i++) {
+                imagen = "/ImagenesGaleria/hotel"+(i+1)+".jpg";
+                //System.out.println(imagen);
+                imagenes[i] = new ImageIcon(getClass().getResource(imagen));
+            }
+            sonido = AudioSystem.getClip();
+            sonido.open(AudioSystem.getAudioInputStream(new File("src/recursos/cancion2.wav").getAbsoluteFile()));
+            FloatControl gainControl = (FloatControl) sonido.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-20.0f);
+            sonido.start();
+            sonido.loop(Clip.LOOP_CONTINUOUSLY);
+            initComponents();
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
+            System.out.println("Error al inciar la musica");
         }
-        initComponents();
     }
 
     /**
@@ -79,6 +99,11 @@ public class Galeria extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Sitka Small", 1, 11)); // NOI18N
         jButton1.setText("Pausar Musica");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanelPizarron.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 130, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,8 +144,18 @@ public class Galeria extends javax.swing.JFrame {
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
+        sonido.stop();
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(this.sonido.isRunning()){
+            this.sonido.stop();
+        }else{
+            this.sonido.start();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
