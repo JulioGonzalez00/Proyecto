@@ -67,19 +67,19 @@ public class Piso1 extends javax.swing.JFrame {
         this.jTextAreaResultado.setText("");
         this.jTextAreaResultado.append("Habitaciones libres del piso " + ps +  ":\nSencillas: ");
         for (int i = 0; i < this.disponibles.length; i++) {
-            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 1){
+            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 1 && this.disponibles[i].libre == 1){
                 this.jTextAreaResultado.append("[" + this.disponibles[i].numero + "] ");
             }
         }
         this.jTextAreaResultado.append("\nDobles: ");
         for (int i = 0; i < this.disponibles.length; i++) {
-            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 2){
+            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 2 && this.disponibles[i].libre == 1){
                 this.jTextAreaResultado.append("[" + this.disponibles[i].numero + "] ");
             }
         }
         this.jTextAreaResultado.append("\nTriples: ");
         for (int i = 0; i < this.disponibles.length; i++) {
-            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 3){
+            if((this.disponibles[i].numero/100)-1 == ps && this.disponibles[i].tipo == 3 && this.disponibles[i].libre == 1){
                 this.jTextAreaResultado.append("[" + this.disponibles[i].numero + "] ");
             }
         }

@@ -6,6 +6,8 @@
 package proyectoprogra;
 
 import controlMySql.MySqlConn;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -56,6 +58,15 @@ public class PruebaInterfazGrafica extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void paint(Graphics g){
+        g.setColor(Color.BLACK);
+        super.paint(g);
+        //Borde
+        g.drawLine(200, 300, 500, 300);
+        g.drawLine(200, 270, 500, 270);
+       
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

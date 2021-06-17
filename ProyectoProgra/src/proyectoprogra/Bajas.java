@@ -298,7 +298,7 @@ public class Bajas extends javax.swing.JFrame {
             String ciudad = "Ciudad de Origen: " + this.conn.rs.getString(3) + "\n";
             String fechaI = "Fecha de ingreso: " + this.conn.rs.getString(6) + "\n";
             Date ap;
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             ap = formato.parse(this.conn.rs.getString(6));
             Calendar aux = Calendar.getInstance();
             aux.setTime(ap);
@@ -324,7 +324,9 @@ public class Bajas extends javax.swing.JFrame {
             String totalT = "Total a pagar: " + tot + "\n";
             String cargos = "Cargos extras:\n";
             String mensaje = "Hotel 12 Rosas \n 12 razones para ser feliz. ";
-            String lugar = "\nDireccion, Fecha de hoy\n";
+            Date fecha2= new Date();
+            formato= new SimpleDateFormat("dd/MM/yyy");
+            String lugar = "\nMerida Yucatan 97000, "+formato.format(fecha2)+"\n";
             
             Paragraph paragraph;
             //Datos del hotel

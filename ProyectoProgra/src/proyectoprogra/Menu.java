@@ -534,7 +534,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         final JFrame aux = this;
         this.setVisible(false);
-        Login2 altas = new Login2();
+        Login2 altas = new Login2(this.conn);
         altas.setVisible(true);
         altas.setLocationRelativeTo(this);
         altas.addWindowListener(new WindowListener() {
